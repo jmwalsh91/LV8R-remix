@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "remix";
 import Avatar from "../Misc/Avatar";
 
 type Props = {};
@@ -52,7 +53,7 @@ function Register({}: Props) {
         </div>
 
         <div className="card-actions justify-around py-5">
-          <button className="btn btn-primary ">Register</button>
+        <Link to="/logreg/createpitch"><button className="btn btn-primary ">Register</button></Link>
         </div>
       </div>
     </div>
