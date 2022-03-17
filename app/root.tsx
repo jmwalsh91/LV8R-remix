@@ -10,6 +10,7 @@ import {
 import type { MetaFunction } from "remix";
 import styles from "./tailwind.css";
 import NavBar from "./components/navigation/NavBar";
+import Foundation from "./components/layoutAndWrappers/Foundation";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
@@ -30,15 +31,17 @@ export default function App() {
       </head>
       <body>
      <div className="flex flex-col h-screen">
-  <div className="hidden sm:block ">
+<div>
 
 
         <NavBar/>
 
         </div>
-        <div className="flex flex-grow">
+        <Foundation>
+     
         <Outlet />
-        </div>
+   
+        </Foundation>
         </div>
         <ScrollRestoration />
         <Scripts />

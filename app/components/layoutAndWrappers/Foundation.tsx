@@ -1,12 +1,12 @@
 import React from 'react'
 
 type Props = {
-    children?: Element
+    children?: any
 }
 
 function Foundation ({children}: Props) {
   return (
-    <div className="container flex w-screen items-center justify-center bg-gradient-to-r from-violet-500 to-fuchsia-500" >
+    <div className="container flex flex-grow w-screen items-center justify-center bg-gradient-to-r from-violet-500 to-fuchsia-500" >
         {children}
     </div>
   )
