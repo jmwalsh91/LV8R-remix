@@ -2372,12 +2372,6 @@ html {
   --tw-ring-offset-color: hsl(var(--b1));
 }
 
-@media (min-width: 640px) {
-  .sm\:block {
-    display: block;
-  }
-}
-
 @media (min-width: 1024px) {
   .lg\:steps-horizontal {
     grid-auto-columns: 1fr;
