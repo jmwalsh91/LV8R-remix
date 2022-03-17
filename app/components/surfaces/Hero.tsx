@@ -14,10 +14,11 @@ function Hero({}: Props) {
     <div className="max-w-md">
       <h1 className="mb-5 text-5xl font-bold">Welcome to LV8R</h1>
       <p className="mb-5">I've seen things you people wouldn't believe. Attack ships on fire off the shoulder of Orion. I watched C-beams glitter in the dark near the Tannhäuser Gate. All those moments will be lost in time, like tears in rain.</p>
+      <button className="btn btn-primary">Tell me more</button>
       <Register/>
       <LogIn/>
       <BuildPitch/>
-      <button className="btn btn-primary">Tell me more</button>
+     
     </div>
   </div>
 </div>

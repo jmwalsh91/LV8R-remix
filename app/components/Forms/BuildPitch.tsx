@@ -8,42 +8,40 @@ function BuildPitch({}: Props) {
 
   return (
 
-<div className="card w-96 bg-neutral text-neutral-content">
-<ul className="steps steps-vertical lg:steps-horizontal">
-  <li className="step step-primary">Pitch Hook</li>
-  <li className="step">Pitch Body </li>
-  <li className="step">Pitch Outro</li>
-</ul>
+<div className="card w-96 bg-neutral text-neutral-content my-10">
 
   <div className="card-body items-center text-center">
 
 
    
-  <h2 className="card-title">Build your pitch.</h2>
-   
+  <h2 className="card-title text-xl ">Build your pitch.</h2>
+  <ul className="steps steps-vertical lg:steps-horizontal min-w-full">
+  <li className="step step-primary">Pitch Hook</li>
+  <li className="step">Pitch Body </li>
+  <li className="step">Pitch Outro</li>
+</ul>
 
- <label className="input-group">
 
-<div className="form-control">
- <label className="label">
-   <span className="label-text">Top Text</span>
- <textarea className="textarea textarea-secondary" placeholder="Bio"></textarea>
- </label>
- </div> 
-</label> 
-<label className="input-group">
+<div className="form-control min-w-full">
+  <textarea className="textarea textarea-bordered h-24 " placeholder="What if I told you..." defaultValue={""} />
+  <label className="label">
+    <span className="label-text-alt text-primary">Top text</span>
+  </label> 
+</div>
 
-<div className="form-control">
- <label className="label">
-   <span className="label-text">Top Text</span>
- <textarea className="textarea textarea-secondary" placeholder="Bio"></textarea>
- </label>
- </div> 
-</label> 
+
+<div className="form-control min-w-full">
+  <textarea className="textarea textarea-bordered h-24" placeholder="What if I told you..." defaultValue={""} />
+  <label className="label">
+    <span className="label-text-alt text-primary">Bottom text</span>
+  </label> 
+</div>
+
+
 
 <div className="btn-group grid grid-cols-2">
-  <button className="btn btn-outline disabled">Previous page</button>
-  <button className="btn btn-outline">Next</button>
+  <button className="btn btn-outline btn-primary ">Previous page</button>
+  <button className="btn btn-outline btn-primary">Next</button>
 </div>
 </div> 
 </div> 

@@ -5,18 +5,18 @@ type Props = {}
 function LogIn({}: Props) {
   return (
 
-<div className="card w-96 bg-neutral text-neutral-content">
+<div className="card w-96 bg-neutral text-neutral-content my-10">
   <div className="card-body items-center text-center">
 
 
    
   <h2 className="card-title">Sign in to your account.</h2>
    
-   <div className="form-control">
+   <div className="form-control ">
  <label className="label">
    <span className="label-text">Email</span>
  </label>
- <label className="input-group">
+ <label className="input-group min-w-full">
    <span>Email</span>
    <input type="text" placeholder="email@domain.com" className="input input-bordered" />
  </label>
