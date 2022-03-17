@@ -9,6 +9,7 @@ import {
 } from "remix";
 import type { MetaFunction } from "remix";
 import styles from "./tailwind.css";
+import NavBar from "./components/navigation/NavBar";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
@@ -28,7 +29,17 @@ export default function App() {
         <Links />
       </head>
       <body>
+     <div className="flex flex-col h-screen">
+  <div className="hidden sm:block ">
+
+
+        <NavBar/>
+
+        </div>
+        <div className="flex flex-grow">
         <Outlet />
+        </div>
+        </div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

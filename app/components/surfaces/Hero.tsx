@@ -3,6 +3,9 @@ import lv8rImg from "../../../public/assets/LV8R2.png"
 import BuildPitch from '../Forms/BuildPitch'
 import LogIn from '../Forms/LogIn'
 import Register from '../Forms/Register'
+import {Link} from "remix"
+
+
 type Props = {}
 
 function Hero({}: Props) {
@@ -14,10 +17,11 @@ function Hero({}: Props) {
     <div className="max-w-md">
       <h1 className="mb-5 text-5xl font-bold">Welcome to LV8R</h1>
       <p className="mb-5">I've seen things you people wouldn't believe. Attack ships on fire off the shoulder of Orion. I watched C-beams glitter in the dark near the Tannhäuser Gate. All those moments will be lost in time, like tears in rain.</p>
-      <button className="btn btn-primary">Tell me more</button>
-      <Register/>
+      <Link to="/logreg"><button className="btn btn-primary">Sign in</button></Link>
+      
+     {/*  <Register/>
       <LogIn/>
-      <BuildPitch/>
+      <BuildPitch/> */}
      
     </div>
   </div>
