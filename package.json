@@ -10,7 +10,7 @@
     "build:remix": "cross-env NODE_ENV=production remix build",
     "dev": "run-p dev:*",
     "dev:css": "npm run generate:css -- --watch",
-    "dev:remix": "cross-env NODE_ENV=development remix dev",
+    "dev:remix": "node -r dotenv/config node_modules/.bin/remix dev",
     "generate:css": "npx tailwindcss -o ./app/tailwind.css"
   },
   "dependencies": {
