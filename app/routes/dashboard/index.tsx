@@ -1,22 +1,30 @@
 import React from 'react'
-import { json, useLoaderData } from 'remix'
+import { json, Outlet, useLoaderData, useParams } from 'remix'
 import { getSession } from '~/services/session.server'
+import {dbClient} from '../../utils/supabaseClient'
+import Cards from './cards'
+
+export let loader = async ({params}) => {
+    const username = params.username
+    console.log(username + "woousername")
+let userdata = await dbClient.from("Users")
+.select(
+  `id, username, email, pitch, received_cards, sent_cards)`
+)
+.match({ username: `${params.username}` })
+return userdata
+}
 
  type Props = {
 
  }
 
-function index({}: Props) {
- 
+function Index({}: Props) {
+ let data = useLoaderData()
+
   return (
-      <>
-    <div className="text-4xl">this is your dashboard
-    </div>
-    <div className="text-4xl">I will need access to username + sent and received cards
-    </div>
-    <button onClick={()=> console.log(Window)}>hi</button>
-    </>
+<Outlet/>
   )
 }
 
-export default index 
+export default Index 

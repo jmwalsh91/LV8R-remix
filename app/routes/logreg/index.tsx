@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { json, useLoaderData } from 'remix'
+import { json, redirect, useLoaderData } from 'remix'
 import { dbClient } from '../../utils/supabaseClient.js'
 import Register from '~/components/Forms/Register'
 import LogIn from '~/components/Forms/LogIn'
@@ -8,11 +8,15 @@ import { ActionFunction } from 'remix'
 import { authenticator } from '~/services/auth.server.js'
 
 export let action: ActionFunction = async ({request, context}) => {
-  return await authenticator.authenticate("form", request, {
-    successRedirect: "/dashboard",
+  let user = await authenticator.authenticate("form", request, {
     failureRedirect: "/logreg",
     context
   })
+  if (user) { 
+    console.log(user)
+    console.log("i see a log")
+    return redirect(`/dashboard/${user.username}`)
+  }
   }
   
 export const loader = async () => {

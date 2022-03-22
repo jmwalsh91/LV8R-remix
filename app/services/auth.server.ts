@@ -28,7 +28,7 @@ import { dbClient } from "../utils/supabaseClient.js";
      * });
      */
 export let authenticator = new Authenticator<User>(sessionStorage, { 
-    sessionKey: "auth"
+    sessionKey: "this is the session key" 
 });
 
 authenticator.use(
