@@ -49,7 +49,7 @@ function Register({}: Props) {
             <input
               type="password"
               name="password2"
-              placeholder="password"
+              placeholder="confirm password"
               className="input input-bordered"
             />
           </label>

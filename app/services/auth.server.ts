@@ -90,35 +90,3 @@ authenticator.use(
   .match({email: `${email}`, password: `${password}`})
   .then(user => console.log(user[0].user)) */
 
-authenticator.use(
-  new FormStrategy(async ({ form, context }) => {
-    let user;
-    console.log(form);
-    let email = form.get("email");
-    let password1: any = form.get("password1");
-    let password2 = form.get("password2");
-
-    if (password1 !== password2) {
-      return;
-    } else {
-      let isTaken = await dbClient
-        .from("Accounts")
-        .select("email")
-        .ilike("email", `${email}`);
-      if (isTaken.data.length === 0) {
-        let hashedPass = await bcrypt.hash(password1, 10);
-        let createdUser = await dbClient
-          .from("Accounts")
-          .insert([{ email: `${email}`, password: `${hashedPass}` }]);
-        let newUser = {
-          email: createdUser.data[0].email,
-          token: createdUser.data[0].email,
-        };
-        return (user = newUser);
-      } else return AuthorizationError;
-    }
-
-    return user;
-  }),
-  "form-register"
-);
