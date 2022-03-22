@@ -1,31 +1,26 @@
 import React, { useState } from 'react'
-import { json, useLoaderData } from 'remix'
+import { json, useLoaderData, ActionFunction, redirect } from 'remix'
 import { dbClient } from '../../utils/supabaseClient.js'
 import Register from '~/components/Forms/Register'
 import Foundation from '~/components/layoutAndWrappers/Foundation'
-import * as bcrypt from "bcryptjs"
-import {supabaseClient} from "../../utils/supabaseClient"
+import { authenticator } from '~/services/auth.server.js'
+import { registerSubmit } from '~/services/auth.server.js'
 
-export async function register({ username, password }: RegisterForm) {
-    let passwordHash = await bcrypt.hash(password, 10);
-    return db.user.create({
-      data: { username, passwordHash },
-    });
-  }
-/* 
-export const loader = async () => {
-  const {data: username} = await dbClient.from("Users").select("username")
-  let thing = await username[0].username
- 
+export let action: ActionFunction = async ({request, context}) => {
 
-  return thing 
-}
- */
+ let user = await authenticator.authenticate("form-register", request, {
+      failureRedirect: "/logreg",
+      context
+    })
+    console.log(user)
+   return null
+    }
+    
 type Props = {}
 
 function RegisterRoute({}: Props) {
 
-/*   const data = useLoaderData() */
+
   return (
     <Foundation>
 <Register/>
