@@ -19,7 +19,7 @@ export let action: ActionFunction = async ({request, context}) => {
   }
   }
   
-export const loader = async () => {
+export let loader = async () => {
 /*   const {data: username} = await dbClient.from("Users").select("username")
   let thing = await username[0].username */
  let thing = "hiii"

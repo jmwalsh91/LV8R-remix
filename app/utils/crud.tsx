@@ -1,30 +1,47 @@
 import {dbClient} from './supabaseClient.js'
 import * as bcrypt from 'bcryptjs'
+import { AuthorizationError } from 'remix-auth'
 
 export const registerSubmit = async ({form}) => {
+  console.log(form)
     let accountId
-    console.log(form);
     let email = form.email
     let password1: any = form.password1
     let password2 = form.password2
 
     if (password1 !== password2) {
-      return ;
+      throw AuthorizationError
     } else {
       let isTaken = await dbClient
         .from("Accounts")
         .select("email")
         .ilike("email", `${email}`);
+        console.log("isTaken is")
+        console.log(isTaken)
       if (isTaken.data.length === 0) {
         let hashedPass = await bcrypt.hash(password1, 10);
         let createdUser = await dbClient
           .from("Accounts")
           .insert([{ email: `${email}`, password: `${hashedPass}` }]);
           let id = createdUser.data[0].id
-          console.log("created user is  " + createdUser)
           return accountId = id
       } else accountId = "error"
     
     }
     return accountId;
 } 
+
+export const avatarSubmit = async ({avatar}) => {
+
+  let fileSubmit = async (avatar) => {
+    let {data, error} = await dbClient
+    .storage
+    .from('userbucket')
+    .upload(`${avatar}`, avatar, {
+      contentType: ['image/png', 'image/jpg']
+    })
+    if (error) return "this is an error"
+    if (data) return data
+        }
+return fileSubmit
+}

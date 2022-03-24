@@ -83,10 +83,39 @@ authenticator.use(
   }),
   "form"
 );
-/* 
-  const {data: user, error } = await dbClient
-  .from('Accounts').select(`
-  user (username, id)`)
-  .match({email: `${email}`, password: `${password}`})
-  .then(user => console.log(user[0].user)) */
 
+
+  authenticator.use(
+    new FormStrategy(async ({ form }) => {
+      let user;
+
+      let username = form.get("username")
+      let bio = form.get("bio")
+      let id = form.get("id")
+      console.log (id, bio, username)
+      let {data: associatedEmail, err} = await dbClient
+      .from("Account")
+      .select('email')
+      .match({id: `${id}`})
+      console.log(associatedEmail)
+      if (associatedEmail) {
+        let newUser = await dbClient
+        .from("Users")
+        .insert([
+          {username: `${username}`, email: `${associatedEmail}`//contextimgid
+         }
+        ])
+        console.log(newUser)
+         user = newUser
+      } else user = AuthorizationError
+    
+      
+    /*   let avatarImg = form.get("avatar") */
+    
+   
+ return user 
+   
+    }),
+    "form-create-user"
+  );
+  
