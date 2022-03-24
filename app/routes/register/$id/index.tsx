@@ -20,10 +20,8 @@ import { redirect } from "remix";
 import Avatar from "~/components/Misc/Avatar.js";
 
 export let action: ActionFunction = async ({ request, context }) => {
-  const fileToUpload = await unstable_parseMultipartFormData(
-    request,
-    uploadHandler
-  );
+
+  console.log(request)
   let user = await authenticator.authenticate("form-create-user", request, {
     failureRedirect: "/",
     context: {
@@ -31,8 +29,9 @@ export let action: ActionFunction = async ({ request, context }) => {
     },
   });
   if (user) {
+    let username = user.username
    /*  return redirect(`/dashboard/${user[0]}` )*/
-   return redirect('/dashboard');
+   return redirect(`/dashboard/${username}`);
   }
 };
 
@@ -78,32 +77,12 @@ function RegisterUsername({ params }: Props) {
     <div className="card w-96 bg-neutral ">
       <div className="card-body flex-col justify-stretch content-around space-y-3 ">
         <p className="text-xl"> Create profile.</p>
-        <Form method="post" name="CreateUser" encType="multipart/form-data">
+        <Form method="post"  encType="multipart/form-data">
           
             <input type="hidden" name="id" value={paramId} />
           
 
-          <div className="container p-2 flex ring-offset-2 ring-2">
-            <div>
-              <Avatar image={preview} />
-            </div>
-
-            <input
-              type="file"
-              id="myFile"
-              name="avatar"
-              ref={imgUploadRef}
-              accept="image/png, image/jpeg"
-            />
-            <button
-              value="avatarButton"
-              className="btn btn-glass"
-              onClick={(e) => handlePreviewClick(e)}
-            >
-              Preview
-            </button>
-          </div>
-
+          
           <div className="container flex-col place-content-evenly  p-2 space-y-2">
             <div className="container place-content-stretch">
               <span>Username</span>

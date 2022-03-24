@@ -7,19 +7,22 @@ type Props = {
 };
 
 
+
 export let loader: LoaderFunction = async ({ request }) => {
   console.log(request)
   return await authenticator.isAuthenticated(request, {
     successRedirect: "/dashboard"
   })
 }
-
+interface formData {
+  value: string
+}
 const LogIn:React.FC<Props> = ({ setReg }: Props) => {
   let navigate = useNavigate()
   
   function handleRegisterClick() {
       console.log("clicky")
-    navigate("/register")
+    navigate("/register/account")
   }
 /*   function handleLoginClick() {
     console.log("I click")

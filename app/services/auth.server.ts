@@ -5,7 +5,7 @@ import { User } from "./session.server";
 import { FormStrategy } from "remix-auth-form";
 import { dbClient } from "../utils/supabaseClient.js";
 import * as bcrypt from "bcryptjs";
-
+import { comparePass, hashPass } from "~/utils/crud";
 /**
  * Create a new instance of the Authenticator.
  *
@@ -35,27 +35,36 @@ export let authenticator = new Authenticator<User>(sessionStorage, {
 authenticator.use(
   new FormStrategy(async ({ form, context }) => {
     let user;
-    let email = form.get("email");
-    let password = form.get("password");
+
+    let formEmail = await form.get("email");
+    let unhashedpass = await form.get("password");
+
+
 
     const { data: res, error } = await dbClient
       .from("Accounts")
       .select(
         `password, user (id, username, email, pitch, received_cards, sent_cards)`
       )
-      .match({ email: `${email}` });
-
-    if (res[0].password === password) {
-      console.log(res[0].user);
+      .match({ email: `${formEmail}` });
+      let passwordMatch = await comparePass(unhashedpass, res[0].password)
+    if (passwordMatch) {
+      console.log(res);
       user = {
         username: res[0].user.username,
         token: `${res[0].user.username}`,
       };
-      context = user;
+      console.log(user.username + user.token)
+     return user 
     } else {
+      console.log(res)
+
+      console.log(res[0].password + " is response pass")
       console.log("oops");
 
-      return AuthorizationError;
+      throw new AuthorizationError(
+        error?.message ?? 'That is not what we have on file',
+    );
     }
     /*       .then(res => console.log(res.data)) */
 
@@ -79,7 +88,7 @@ authenticator.use(
       };
     }
     console.log(User) */
-    return user;
+
   }),
   "form"
 );
@@ -88,32 +97,45 @@ authenticator.use(
   authenticator.use(
     new FormStrategy(async ({ form }) => {
       let user;
-
+      console.log(form)
       let username = form.get("username")
       let bio = form.get("bio")
       let id = form.get("id")
       console.log (id, bio, username)
-      let {data: associatedEmail, err} = await dbClient
-      .from("Account")
-      .select('email')
+
+      let {data: foundAccount, err} = await dbClient
+      .from("Accounts")
+      .select('email, id')
       .match({id: `${id}`})
-      console.log(associatedEmail)
-      if (associatedEmail) {
+      console.log(foundAccount)
+      if (foundAccount[0].email) {
         let newUser = await dbClient
         .from("Users")
         .insert([
-          {username: `${username}`, email: `${associatedEmail}`//contextimgid
+          {username: `${username}`, email: `${foundAccount[0].email}`, bio: `${bio}`
          }
         ])
+        console.log("new user iss.....")
         console.log(newUser)
-         user = newUser
+        
+        let linkedAccount = await dbClient
+        .from("Accounts")
+        .update({user: `${newUser.data[0].id}`})
+        .match({email: `${foundAccount[0].email}` })
+        console.log("account")
+        console.log(linkedAccount)
+        user = {
+          username: newUser.data[0].username,
+          token: `${newUser.data[0].username}`,
+        };
+         
       } else user = AuthorizationError
     
       
     /*   let avatarImg = form.get("avatar") */
     
-   
- return user 
+  
+ return user
    
     }),
     "form-create-user"

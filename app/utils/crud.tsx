@@ -2,6 +2,15 @@ import {dbClient} from './supabaseClient.js'
 import * as bcrypt from 'bcryptjs'
 import { AuthorizationError } from 'remix-auth'
 
+export const hashPass = async (pass) => {
+  let hashedPass = await bcrypt.hash(pass, 10);
+  return hashedPass
+}
+export const comparePass = async (pass, resPass) => {
+  const isCorrect = await bcrypt.compare(pass, resPass)
+  if (!isCorrect) return null
+  return isCorrect
+}
 export const registerSubmit = async ({form}) => {
   console.log(form)
     let accountId
