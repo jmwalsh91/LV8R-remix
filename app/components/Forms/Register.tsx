@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "remix";
 import Avatar from "../Misc/Avatar";
+import * as bcrypt from "bcryptjs"
+import {supabaseClient} from "../../utils/supabaseClient"
+import { Form } from "remix";
 
 type Props = {};
 
@@ -9,19 +12,16 @@ function Register({}: Props) {
     <div className="card w-96 bg-neutral ">
       <div className="card-body flex-col justify-stretch content-around space-y-3 ">
         <h2 className="card-title">Register.</h2>
+        <Form method="post" name="RegisterForm">
 
-        <div className="container flex-col items-center">
-          <Avatar image={"https://api.lorem.space/image/face?hash=3174"} />
-
-          <form action="/action_page.php">
-            <input type="file" id="myFile" name="filename" />
-          </form>
-        </div>
+         
+      
         <div className="form-control">
           <label className="input-group">
             <span>Email</span>
             <input
               type="text"
+              name="email"
               placeholder="email@domain.com"
               className="input input-bordered"
             />
@@ -33,6 +33,7 @@ function Register({}: Props) {
             <span>Password</span>
             <input
               type="password"
+              name="password1"
               placeholder="password"
               className="input input-bordered"
             />
@@ -43,7 +44,8 @@ function Register({}: Props) {
             <span>Password</span>
             <input
               type="password"
-              placeholder="password"
+              name="password2"
+              placeholder="confirm password"
               className="input input-bordered"
             />
           </label>
@@ -53,10 +55,13 @@ function Register({}: Props) {
         </div>
 
         <div className="card-actions justify-around py-5">
-        <Link to="/logreg/createpitch"><button className="btn btn-primary ">Register</button></Link>
+        {/* <Link to="/logreg/createpitch"> */}<button className="btn btn-primary ">Register</button>{/* </Link> */}
+       
         </div>
+        </Form>
       </div>
     </div>
   );
 }
 export default Register;
+

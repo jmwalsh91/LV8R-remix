@@ -1,29 +1,36 @@
 import React, { useState } from 'react'
-import { json, useLoaderData } from 'remix'
-import { dbClient } from '../../utils/supabaseClient.js'
-import Register from '~/components/Forms/Register'
+import { json, redirect, useLoaderData } from 'remix'
+import { commitSession, getSession } from '~/services/session.server'
 import LogIn from '~/components/Forms/LogIn'
 import Foundation from '~/components/layoutAndWrappers/Foundation'
+import { ActionFunction } from 'remix'
+import { authenticator } from '~/services/auth.server.js'
 
+export let action: ActionFunction = async ({request, context}) => {
+  let user = await authenticator.authenticate("form", request, {
+    failureRedirect: "/logreg",
+    context
+  })
+  if (user) { 
+    console.log(user)
+    let session = await getSession()
+    return redirect(`/dashboard/${user.username}`, { 
+    headers: { "Set-Cookie": await commitSession(session) },
+  });
+    
+  }
+  }
+  
 
-export const loader = async () => {
-  console.log(process.env.SUPABASE_URL)
-  const {data: username} = await dbClient.from("Users").select("username")
-  let thing = await username[0].username
- 
-
-  return thing 
-}
 
 type Props = {}
 
 function LoginRegister({}: Props) {
     const [reg,setReg] = useState(false)
-  const data = useLoaderData()
+
   return (
     <Foundation>
-      <p>{data}</p>
-    {reg === true?  <Register/> : <LogIn setReg={setReg}/>} 
+<LogIn setReg={setReg}/>
     </Foundation>
   )
 }
