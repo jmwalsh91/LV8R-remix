@@ -1,5 +1,6 @@
 // app/services/session.server.ts
 import { createCookieSessionStorage, SessionStorage } from "remix";
+import { redirect } from "remix";
 
 // export the whole sessionStorage object
 export let sessionStorage = createCookieSessionStorage({
@@ -19,3 +20,13 @@ export type User = {
 }
 // you can also export the methods individually for your own usage
 export let { getSession, commitSession, destroySession } = sessionStorage;
+
+export async function handleLogout(request: Request) {
+  console.log('yaaaaaaaaaaaa')
+  let session = await getSession(request.headers.get("Cookie"));
+  console.log(session)
+
+  return redirect("/", {
+    headers: { "Set-Cookie": await destroySession(session) },
+  });
+}

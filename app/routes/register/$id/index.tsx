@@ -1,52 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
-import RegisterPicUsername from "~/components/Forms/RegisterPicUsername";
-import {
-  useLoaderData,
-  Form,
-  ActionFunction,
-  useActionData,
-  unstable_parseMultipartFormData,
-  useParams,
-  json,
-  LoaderFunction,
-} from "remix";
-import { dbClient } from "../../../utils/supabaseClient.js";
-import { uploadHandler } from "../../../utils/uploadHandler";
-import { avatarSubmit } from "~/utils/crud.js";
-import { Outlet } from "remix";
+import { useLoaderData, Form, ActionFunction, LoaderFunction } from "remix";
+import { getSession, commitSession } from "~/services/session.server";
 import { authenticator } from "~/services/auth.server.js";
-import UploadAvatar from "~/components/register/UploadAvatar.js";
 import { redirect } from "remix";
-import Avatar from "~/components/Misc/Avatar.js";
 
-export let action: ActionFunction = async ({ request, context }) => {
-
-  console.log(request)
+export let action: ActionFunction = async ({ request}) => {
+  console.log(request);
   let user = await authenticator.authenticate("form-create-user", request, {
     failureRedirect: "/",
-    context: {
-      message: "hello"
-    },
   });
   if (user) {
-    let username = user.username
-   /*  return redirect(`/dashboard/${user[0]}` )*/
-   return redirect(`/dashboard/${username}`);
+
+      console.log(user)
+      let session = await getSession()
+      return redirect(`/dashboard/${user.username}`, { 
+      headers: { "Set-Cookie": await commitSession(session) },
+    });
   }
 };
 
-/*   let data = await request.formData();
-    console.log("data")
-    console.log(request.headers)
-    let form = await Object.fromEntries(data);
-    console.log(form) */
-/*  let imgIndex = await avatarSubmit(form.avatar);
-    if (!imgIndex || "undefined") {
-      throw ErrorEvent;
-    } else {
-      alert("success");
-      return imgIndex;
-    } */
+
 
 export let loader: LoaderFunction = async ({ params }) => {
   console.log(params.id);
@@ -57,32 +29,15 @@ type Props = {
 };
 
 function RegisterUsername({ params }: Props) {
-  const paramId: any = useLoaderData()
+  const paramId: any = useLoaderData();
 
-  const [preview, setPreview] = useState<string>(
-    "https://api.lorem.space/image/face?hash=92310"
-  );
-  const imgUploadRef: any = useRef();
-
-  const handlePreviewClick = async (e: any) => {
-    e?.preventDefault();
-    if (imgUploadRef.current.files.length === 1) {
-      let previewImage = await URL.createObjectURL(
-        imgUploadRef.current.files[0]
-      );
-      setPreview(previewImage);
-    }
-  };
   return (
     <div className="card w-96 bg-neutral ">
       <div className="card-body flex-col justify-stretch content-around space-y-3 ">
         <p className="text-xl"> Create profile.</p>
-        <Form method="post"  encType="multipart/form-data">
-          
-            <input type="hidden" name="id" value={paramId} />
-          
+        <Form method="post" encType="multipart/form-data">
+          <input type="hidden" name="id" value={paramId} />
 
-          
           <div className="container flex-col place-content-evenly  p-2 space-y-2">
             <div className="container place-content-stretch">
               <span>Username</span>
@@ -116,23 +71,3 @@ function RegisterUsername({ params }: Props) {
 
 export default RegisterUsername;
 
-//$id/$default [index.tsx]
-/* 
-import Avatar from '../../../../components/Misc/Avatar'
-type Props = {}
-
-function index({}: Props) {
-    let avatarImg="img"
-  return (
-      <><Avatar image={avatarImg} />
-<form>
-    <form action="/action_page.php" />
-      <input type="file" id="myFile" name="avatar" />
-      <button value="avatarButton" className="btn btn-glass">Preview</button>
-    </form>
-    </>
-
-  )
-}
-
-export default index */

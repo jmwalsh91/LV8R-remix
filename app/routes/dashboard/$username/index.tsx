@@ -1,17 +1,27 @@
 import React from "react";
 
-import { json, Outlet, useLoaderData, useParams } from "remix";
-import { getSession, sessionStorage } from "~/services/session.server";
+import { ActionFunction, Form, json, Outlet, useLoaderData, useParams } from "remix";
+import { getSession, handleLogout, sessionStorage, destroySession } from "~/services/session.server";
 import { dbClient } from "../../../utils/supabaseClient";
 import { LoaderFunction } from "remix";
+import { redirect } from "remix";
+import { authenticator } from "~/services/auth.server";
 
 export let loader: LoaderFunction = async ({ params }) => {
-  let session = await getSession()
+/*   let session = await getSession()
   let id = await session.has
-  console.log(id)
+  console.log(id) */
   console.log(params.username);
   return params.username;
 };
+export const action: ActionFunction = async ({
+  request,
+}) => {
+  console.log("whoa there")
+  
+  return await authenticator.logout(request, {redirectTo: "/logreg"})
+};
+
 type Props = any
 
 function Index({}: Props) {
@@ -24,7 +34,10 @@ function Index({}: Props) {
             {" "}
             this is the index of $username, welcome,{" "}
   {username}
-          </p>{" "}
+  <Form method="post"><button className="btn-accent" > log out </button></Form>
+          </p>
+         
+            
           <Outlet />{" "}
         </div>
       </div>
