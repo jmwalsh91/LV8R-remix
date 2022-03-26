@@ -30,3 +30,4 @@ export async function handleLogout(request: Request) {
     headers: { "Set-Cookie": await destroySession(session) },
   });
 }
+
