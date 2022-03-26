@@ -6,6 +6,8 @@ import { dbClient } from "../../../utils/supabaseClient";
 import { LoaderFunction } from "remix";
 import { redirect } from "remix";
 import { authenticator } from "~/services/auth.server";
+import StackNotif from "~/components/dashboard/StackNotif";
+import UserInfo from "~/components/dashboard/UserInfo";
 
 export let loader: LoaderFunction = async ({ params }) => {
 /*   let session = await getSession()
@@ -32,12 +34,12 @@ function Index({}: Props) {
 
       <div className="w-full h-36 sm:flex md:grid row-start-1 col-start-1 row-end-2 col-end-4 ">
         <div className="card h-full glass border-cyan-500 border-4">
-  one
+<StackNotif/>
       </div> 
     </div> 
       <div className="w-full h-36 sm:flex md:grid row-start-1 col-start-4 row-end-2 col-end-8  ">
       <div className="card h-full bg-neutral border-cyan-500 border-4">
-      two
+ <UserInfo userImage="img" username="username"/>
       </div> 
 
       </div>
