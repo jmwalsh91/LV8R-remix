@@ -38,7 +38,7 @@ function Index({}: Props) {
       </div> 
     </div> 
       <div className="w-full h-36 sm:flex md:grid row-start-1 col-start-4 row-end-2 col-end-8  ">
-      <div className="card h-full bg-neutral border-cyan-500 border-4">
+      <div className="card h-full glass border-4">
  <UserInfo userImage="img" username="username"/>
       </div> 
 
