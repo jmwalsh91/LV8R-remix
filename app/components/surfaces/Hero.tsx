@@ -10,7 +10,7 @@ type Props = {}
 
 function Hero({}: Props) {
   return (
-<div className="hero min-h-screen" style={{backgroundImage: "url(https://cdn.wallpapersafari.com/72/49/6H705l.jpg)"}}>
+<div className="hero h-screen" style={{backgroundImage: "url(https://cdn.wallpapersafari.com/72/49/6H705l.jpg)"}}>
   {/*   <img src={lv8rImg} alt="lv8r"/>  */}
   <div className="hero-overlay bg-opacity-60" />
   <div className="hero-content text-center text-neutral-content">

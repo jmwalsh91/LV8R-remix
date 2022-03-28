@@ -17,7 +17,7 @@ let placeholder = username.charAt(0).concat(username.charAt(1))
      </div>
      :
     <div className="avatar placeholder">
-       <div className="bg-neutral-focus text-neutral-content rounded-full w-24 ">
+       <div className="bg-neutral-focus text-neutral-content rounded-full w-16 ">
          <span className="text-xl">{placeholder}</span>
          </div>
          </div>

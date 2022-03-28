@@ -9,7 +9,7 @@ import { Outlet } from "remix";
 export default function Index() {
   return (
 
-    <div className="container h-400 object-center">
+    <div className="container h-400 object-center w-screen">
 <Outlet/>
 <Hero/>
 
