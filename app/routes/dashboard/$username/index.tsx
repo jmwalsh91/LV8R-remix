@@ -30,8 +30,8 @@ type Props = any
 function Index({}: Props) {
   let username: any = useLoaderData();
   return (
-    
-    <div className="w-screen h-full   ">
+
+    <div className="w-screen h-full flex flex-col w-screen items-center justify-center    ">
 
 
 
@@ -46,7 +46,7 @@ function Index({}: Props) {
 </div>
 
 
-<div className="w-[90vw] h-full glass">
+<div className="w-[90vw] h-[80vh] glass">
 <div className="tabs tabs-boxed w-64 ">
   <Link to="lv8r" className="tab">Tab 1</Link> 
   <a className="tab tab-active">Tab 2</a> 

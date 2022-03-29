@@ -37,11 +37,11 @@ export default function App() {
         <NavBar/>
 
         </div>
-        <Foundation>
      
+        <div className="container flex flex-grow w-screen items-center justify-center bg-gradient-to-r from-base-100 to-neutral" >
         <Outlet />
    
-        </Foundation>
+    </div>
         </div>
         <ScrollRestoration />
         <Scripts />
