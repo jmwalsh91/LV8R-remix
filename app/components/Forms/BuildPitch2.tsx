@@ -6,7 +6,7 @@ type Props = {
 
 }
 
-function BuildPitch({setPage}: Props) {
+function BuildPitch2({setPage}: Props) {
   
 
 
@@ -22,7 +22,7 @@ function BuildPitch({setPage}: Props) {
 
 
 <div className="form-control min-w-full">
-  <textarea name="1" className="textarea textarea-bordered h-24 " placeholder="What if I told you..." defaultValue={""} />
+  <textarea name="3" className="textarea textarea-bordered h-24 " placeholder="What if I told you..." defaultValue={""} />
   <label className="label">
     <span className="label-text-alt text-primary">Top text</span>
   </label> 
@@ -30,7 +30,7 @@ function BuildPitch({setPage}: Props) {
 
 
 <div className="form-control min-w-full">
-  <textarea name="2"className="textarea textarea-bordered h-24" placeholder="What if I told you..." defaultValue={""} />
+  <textarea name="4" className="textarea textarea-bordered h-24" placeholder="What if I told you..." defaultValue={""} />
   <label className="label">
     <span className="label-text-alt text-primary">Bottom text</span>
   </label> 
@@ -39,13 +39,13 @@ function BuildPitch({setPage}: Props) {
 
 
 <div className="btn-group grid grid-cols-2">
-  <button className="btn btn-outline btn-disabled ">Previous page</button>
-  <button className="btn btn-outline btn-primary" onClick={()=>setPage(2)}>Next</button>
+  <button className="btn btn-outline btn-primary " onClick={()=>setPage(1)}>Previous page</button>
+  <button className="btn btn-outline btn-primary " onClick={()=>setPage(3)}>Next</button>
 </div>
 </div> 
 </div> 
   
   )
 }
-  export default BuildPitch
+  export default BuildPitch2
 

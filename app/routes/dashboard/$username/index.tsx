@@ -14,7 +14,6 @@ export let loader: LoaderFunction = async ({ params }) => {
 /*   let session = await getSession()
   let id = await session.has
   console.log(id) */
-  console.log(params.username);
   return params.username;
 };
 export const action: ActionFunction = async ({
@@ -31,7 +30,7 @@ function Index({}: Props) {
   let username: any = useLoaderData();
   return (
 
-    <div className="w-screen h-full flex flex-col w-screen items-center justify-center    ">
+    <div className="w-screen h-full flex flex-col items-center justify-center    ">
 
 
 
@@ -48,8 +47,8 @@ function Index({}: Props) {
 
 <div className="w-[90vw] h-[80vh] glass">
 <div className="tabs tabs-boxed w-64 ">
-  <Link to="lv8r" className="tab">Tab 1</Link> 
-  <a className="tab tab-active">Tab 2</a> 
+  <Link to="lv8r" className="tab">LV8R:RIDE</Link> 
+  <Link to="make" className="tab tab-active">MAKE</Link> 
   <a className="tab">Tab 3</a>
 </div>
 <div>
