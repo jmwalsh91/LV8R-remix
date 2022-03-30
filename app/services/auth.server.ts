@@ -49,6 +49,8 @@ authenticator.use(
       user = {
         username: res[0].user.username,
         token: `${res[0].user.username}`,
+        id: res[0].user.id,
+        pitch: res[0].user.pitch
       };
       return user;
     } else {

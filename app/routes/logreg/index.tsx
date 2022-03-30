@@ -13,7 +13,8 @@ export let action: ActionFunction = async ({request, context}) => {
   })
   if (user) { 
     console.log(user)
-    let session = await getSession()
+    let session = await getSession(request.headers.get("Cookie"))
+    session.set("access_token", user.access_token)
     return redirect(`/dashboard/${user.username}`, { 
     headers: { "Set-Cookie": await commitSession(session) },
   });

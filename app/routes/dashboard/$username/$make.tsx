@@ -43,7 +43,7 @@ function $make({}: Props) {
 <Form method="post">
     <input type="hidden" name="username" value={`${username}`}/>
     <ScrollWrapper>
-      <HookCard hookText='this is the hook text' imageUrl='this is an image'/>
+   
     </ScrollWrapper>
 
     <ScrollWrapper>
