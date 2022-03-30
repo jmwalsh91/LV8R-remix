@@ -15,11 +15,12 @@ export const comparePass = async (pass, resPass) => {
 export const registerSubmit = async ({ form }) => {
   console.log(form);
   let accountId;
-  let email = form.email;
-  let password1: any = form.password1;
-  let password2 = form.password2;
+  let email = await form.get("email");
+  let password1: any = await form.get("password1");
+  let password2 = await form.get("password2");
 
   if (password1 !== password2) {
+    console.log(password1, password2)
     throw AuthorizationError;
   } else {
     let isTaken = await dbClient
@@ -77,9 +78,9 @@ export const createPitch = async ({ form }) => {
     .from("Users")
     .select("id")
     .ilike("username", `${username}`);
-  if (error) {
-    throw isErrorResponse("Something went wrong");
-  }
+    if (error) {
+      throw isErrorResponse("Something went wrong");
+    }
   let updatedUser = await dbClient
     .from("Users")
     .update({ pitch: pitch[0].id })

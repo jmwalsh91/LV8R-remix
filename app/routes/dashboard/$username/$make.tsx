@@ -3,6 +3,7 @@ import {Form, ActionFunction, Link, LoaderFunction, useLoaderData} from 'remix'
 import BuildPitch from '~/components/Forms/BuildPitch'
 import BuildPitch2 from '~/components/Forms/BuildPitch2'
 import BuildPitch3 from '~/components/Forms/BuildPitch3'
+import CreatePitch from '~/components/Forms/CreatePitch'
 import { getSession } from '~/services/session.server'
 import { createPitch } from '~/utils/crud'
 
@@ -36,9 +37,7 @@ function $make({}: Props) {
 </div>
 <Form method="post">
     <input type="hidden" name="username" value={`${username}`}/>
- <BuildPitch setPage={setPage}/>
- <BuildPitch2 setPage={setPage}/>
- <BuildPitch3 setPage={setPage}/>
+<CreatePitch/> 
 <button className="btn btn-primary">Submit</button>
  </Form>
   </div>
