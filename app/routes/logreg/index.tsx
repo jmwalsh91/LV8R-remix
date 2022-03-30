@@ -29,9 +29,9 @@ function LoginRegister({}: Props) {
     const [reg,setReg] = useState(false)
 
   return (
-    <Foundation>
+   <>
 <LogIn setReg={setReg}/>
-    </Foundation>
+</>
   )
 }
 

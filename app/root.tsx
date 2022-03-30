@@ -29,19 +29,19 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
-     <div className="flex flex-col h-screen">
+      <body >
+     <div className="flex flex-col h-screen w-screen bg-gradient-to-r from-base-100 to-neutral">
 <div>
 
 
         <NavBar/>
 
         </div>
-        <Foundation>
      
+        <div className="container flex flex-grow w-screen items-center justify-center bg-gradient-to-r from-base-100 to-neutral" >
         <Outlet />
    
-        </Foundation>
+    </div>
         </div>
         <ScrollRestoration />
         <Scripts />

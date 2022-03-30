@@ -6,10 +6,11 @@ type Props = {
 
 function Foundation ({children}: Props) {
   return (
-    <div className="container flex flex-grow w-screen items-center justify-center bg-gradient-to-r from-violet-500 to-fuchsia-500" >
+    <div className="container flex flex-grow w-screen items-center justify-center bg-gradient-to-r from-base-100 to-neutral" >
         {children}
     </div>
   )
 }
 
 export default Foundation
+
