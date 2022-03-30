@@ -2713,6 +2713,14 @@ html {
   padding-top: 0.5rem;
 }
 
+.pb-16 {
+  padding-bottom: 4rem;
+}
+
+.pb-\[80vh\] {
+  padding-bottom: 80vh;
+}
+
 .text-center {
   text-align: center;
 }
@@ -2740,6 +2748,11 @@ html {
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .font-bold {
@@ -2812,6 +2825,14 @@ html {
 
 .ring-offset-2 {
   --tw-ring-offset-width: 2px;
+}
+
+.transition {
+  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 @media (min-width: 640px) {
