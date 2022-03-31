@@ -2713,10 +2713,6 @@ html {
   padding-top: 0.5rem;
 }
 
-.pb-16 {
-  padding-bottom: 4rem;
-}
-
 .pb-\[80vh\] {
   padding-bottom: 80vh;
 }
@@ -2735,6 +2731,11 @@ html {
   line-height: 2rem;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
@@ -2748,11 +2749,6 @@ html {
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }
 
 .font-bold {
@@ -2864,10 +2860,5 @@ html {
 
   .lg\:hidden {
     display: none;
-  }
-
-  .lg\:text-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
   }
 }

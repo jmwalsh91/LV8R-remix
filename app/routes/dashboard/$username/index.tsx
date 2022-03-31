@@ -10,20 +10,31 @@ import StackNotif from "~/components/dashboard/StackNotif";
 import UserInfo from "~/components/dashboard/UserInfo";
 
 
-export let loader: LoaderFunction = async ({ params }) => {
-/*   let session = await getSession()
-  let id = await session.has
-  console.log(id) */
+export let loader: LoaderFunction = async ({ request, params }) => {
+  let session = await getSession(request.headers.get("Cookie"))
+
+
+
+  //do we want access token or just token, for now? 
+ 
+  let userdata = session
+  console.log(userdata)
+  console.log("is user data")
   return params.username;
 };
-export const action: ActionFunction = async ({
+
+/*  export const action: ActionFunction = async ({
   request,
 }) => {
-  console.log("whoa there")
-  
+  let session = await getSession(request.headers.get("Cookie"))
+
+ 
+  let userdata = session.data["auth:token"]
+  console.log(userdata)
+
   return await authenticator.logout(request, {redirectTo: "/logreg"})
 };
-
+ */
 type Props = any
 
 function Index({}: Props) {
