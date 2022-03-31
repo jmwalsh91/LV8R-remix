@@ -55,20 +55,20 @@ export const avatarSubmit = async ({ avatar }) => {
 
 export const createPitch = async ({ form }) => {
   let username = await form.get("username");
-  let one = await form.get("1");
-  let two = await form.get("2");
-  let three = await form.get("3");
-  let four = await form.get("4");
-  let five = await form.get("5");
-  let six = await form.get("6");
+  let title = await form.get("Title");
+  let hookText = await form.get("HookText");
+  let needText = await form.get("NeedText");
+  let pitchText = await form.get("PitchText");
+  let pitchText2 = await form.get("PitchText2");
+  let cta = await form.get("CTA");
 
   let { data: pitch, error } = await dbClient.from("Pitches").insert({
-    FieldOne: one,
-    FieldTwo: two,
-    FieldThree: three,
-    FieldFour: four,
-    FieldFive: five,
-    FieldSix: six,
+    Title: title,
+    HookText: hookText,
+    NeedText: needText,
+    PitchText: pitchText,
+    PitchText2: pitchText2,
+    CTA: cta,
   });
   if (error) {
     throw isErrorResponse("Something went wrong");

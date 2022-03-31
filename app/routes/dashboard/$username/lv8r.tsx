@@ -1,5 +1,6 @@
 import React from 'react'
 import * as down from 'public/assets/down.svg'
+import ScrollWrapper from '~/components/layoutAndWrappers/ScrollWrapper'
 
 type Props = {}
 
@@ -7,7 +8,8 @@ function $lv8r({}: Props) {
   return (
 
     <div>
-      <div className="card glass md:w-[40rem] md:h-[40rem] flex shadow-md shadow-base-100 ">
+      <ScrollWrapper>
+      <div className="card glass md:w-[40rem] md:h-[40rem] flex shadow-md shadow-base-100 mb-[80vh] ">
         <div className="p-3 justify-center items-center flex-col">
 <div className="text-4xl text-base-100 underline mb-2 "> AppRunner </div>
 
@@ -20,7 +22,64 @@ function $lv8r({}: Props) {
 </div>
 
       </div>
-      <div className="flex justify-around pt-2">
+
+      </ScrollWrapper>
+
+      <ScrollWrapper>
+      <div className="card glass md:w-[40rem] md:h-[40rem] flex shadow-md shadow-base-100 mb-[80vh] ">
+        <div className="p-3 justify-center items-center flex-col">
+<div className="text-4xl text-base-100 underline mb-2 "> AppRunner </div>
+
+
+<div className="text-xl text-base-100  mb-10"> I've seen things you people wouldn't believe. Attack ships on fire off the shoulder of Orion. I watched C-beams glitter in the dark near the Tannhauser Gate. All those moments will be lost in time, like tears in rain.</div>
+
+<img src="https://i.kym-cdn.com/entries/icons/facebook/000/025/388/1580752469774.jpg" alt="lofi"/>
+
+
+</div>
+
+      </div>
+
+      </ScrollWrapper>
+
+      <ScrollWrapper>
+      <div className="card glass md:w-[40rem] md:h-[40rem] flex shadow-md shadow-base-100 mb-[80vh] ">
+        <div className="p-3 justify-center items-center flex-col">
+<div className="text-4xl text-base-100 underline mb-2 "> AppRunner </div>
+
+
+<div className="text-xl text-base-100  mb-10"> I've seen things you people wouldn't believe. Attack ships on fire off the shoulder of Orion. I watched C-beams glitter in the dark near the Tannhauser Gate. All those moments will be lost in time, like tears in rain.</div>
+
+<img src="https://i.kym-cdn.com/entries/icons/facebook/000/025/388/1580752469774.jpg" alt="lofi"/>
+
+
+</div>
+
+      </div>
+
+      </ScrollWrapper>
+
+      <ScrollWrapper>
+      <div className="card glass md:w-[40rem] md:h-[40rem] flex shadow-md shadow-base-100 mb-[5vh] ">
+        <div className="p-3 justify-center items-center flex-col">
+<div className="text-4xl text-base-100 underline mb-2 "> AppRunner </div>
+
+
+<div className="text-xl text-base-100  mb-10"> I've seen things you people wouldn't believe. Attack ships on fire off the shoulder of Orion. I watched C-beams glitter in the dark near the Tannhauser Gate. All those moments will be lost in time, like tears in rain.</div>
+
+<img src="https://i.kym-cdn.com/entries/icons/facebook/000/025/388/1580752469774.jpg" alt="lofi"/>
+
+
+</div>
+
+      </div>
+
+      </ScrollWrapper>
+
+
+
+
+      <div className="flex justify-around pt-2 mb-[30vh]">
       <button className="btn btn-accent shadow-md shadow-base-100 ">
 <svg width="35" height="36" viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="35" height="36" fill=""/>
