@@ -5,7 +5,7 @@ import { redirect } from "remix";
 // export the whole sessionStorage object
 export let sessionStorage = createCookieSessionStorage({
   cookie: {
-    name: "sb:token", // use any name you want here
+    name: "auth:token", // use any name you want here
     expires: new Date(Date.now() + 60),
     sameSite: "lax", // this helps with CSRF
     path: "/", // remember to add this so the cookie will work in all routes
@@ -19,7 +19,7 @@ export let sessionStorage = createCookieSessionStorage({
 export type User = {
     username: string,
     token: string,
-    access_token: string
+    user_id: string
 }
 // you can also export the methods individually for your own usage
 export let { getSession, commitSession, destroySession } = sessionStorage;
