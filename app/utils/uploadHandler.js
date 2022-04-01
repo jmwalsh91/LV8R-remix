@@ -60,7 +60,7 @@ goes in action
 export const uploadHandler = async ({ name, stream, filename }) => {
     console.log(name, stream, filename);
 
-    if (name !== "avatar") {
+    if (!name ) {
       stream.resume();
       console.log("stream")
       console.log(stream)
@@ -85,6 +85,8 @@ export const uploadHandler = async ({ name, stream, filename }) => {
     // return information up uploaded file
  JSON.stringify({ data });
   }
+
+  
 
 /* 
   // get file info back after image upload

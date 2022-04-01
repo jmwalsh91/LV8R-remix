@@ -20,10 +20,17 @@ import PitchCard from "~/components/pitch/PitchCard";
 import { getSession } from "~/services/session.server";
 import { createPitch, hasPitch } from "~/utils/crud";
 import { authenticator } from "~/services/auth.server";
+import UploadHookImg from "~/components/Forms/UploadHookImg";
+import UploadPitchImg from "~/components/Forms/UploadPitchImg";
+import { unstable_parseMultipartFormData } from "remix";
+import { uploadHandler } from "../../../utils/uploadHandler"
 
 export let action: ActionFunction = async ({ request }) => {
   /* //get user object from sessions instead of params, wherever this occurs. */
+  console.log("action in make")
+console.log(request)
   let form = await request.formData();
+  console.log(form)
   let updatedUser = await createPitch({ form });
   console.log("place oacsdf");
   console.log(updatedUser.data[0]);
@@ -64,7 +71,7 @@ function $make({}: Props) {
   let pitch = JSON.stringify(data.pitch) 
 
   return (
-    <div>
+    <div className="justify-center content-center items-center">
 
 
       <Form method="post">
@@ -92,6 +99,7 @@ function $make({}: Props) {
             />
           </div>
           <p> image upload here</p>
+   {/*        <UploadHookImg/> */}
           </div>
         </ScrollWrapper>
         <ScrollWrapper>
@@ -109,7 +117,13 @@ function $make({}: Props) {
      
           </div>
 
-          <p> image upload here</p>
+      
+          </div>
+
+          <div>
+           <div className="text-2xl w-80 lg:[40rem]">Upload an image that the user will see before you make the final part of your pitch</div>
+ {/*           <UploadPitchImg/> */}
+ 
           </div>
         </ScrollWrapper>
 

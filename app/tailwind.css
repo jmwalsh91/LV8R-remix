@@ -2428,6 +2428,10 @@ html {
   place-content: stretch;
 }
 
+.content-center {
+  align-content: center;
+}
+
 .content-around {
   align-content: space-around;
 }
