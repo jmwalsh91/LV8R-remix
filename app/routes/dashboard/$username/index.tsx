@@ -8,37 +8,38 @@ import { redirect } from "remix";
 import { authenticator } from "~/services/auth.server";
 import StackNotif from "~/components/dashboard/StackNotif";
 import UserInfo from "~/components/dashboard/UserInfo";
+import { hasPitch } from "~/utils/crud";
 
 
 export let loader: LoaderFunction = async ({ request, params }) => {
   let session = await getSession(request.headers.get("Cookie"))
-
-
-
-  //do we want access token or just token, for now? 
- 
-  let userdata = session
+ let auth = await session.has("Cookie")
+  let userdata = await session.get("auth:token")
+  console.log(auth)
   console.log(userdata)
   console.log("is user data")
-  return params.username;
+  let pitch = await hasPitch(params.username)
+  return {pitch}
 };
 
-/*  export const action: ActionFunction = async ({
+
+
+/*   export const action: ActionFunction = async ({
   request,
 }) => {
   let session = await getSession(request.headers.get("Cookie"))
-
+  console.log("I AM NAVIGATING")
  
   let userdata = session.data["auth:token"]
   console.log(userdata)
 
   return await authenticator.logout(request, {redirectTo: "/logreg"})
-};
- */
+}; */
 type Props = any
 
 function Index({}: Props) {
-  let username: any = useLoaderData();
+  let data = useLoaderData();
+/*   let pitchAction = data.pitch */
   return (
 
     <div className="w-screen h-full flex flex-col items-center justify-center    ">
@@ -58,11 +59,13 @@ function Index({}: Props) {
 
 <div className="w-[90vw] h-[80vh] glass">
 <div className="tabs tabs-boxed w-64 ">
-  <Link to="lv8r" className="tab">LV8R:RIDE</Link> 
+  <Link to="lv8r" className="tab" >LV8R:RIDE</Link> 
   <Link to="make" className="tab tab-active">MAKE</Link> 
   <a className="tab">Tab 3</a>
+  <Link to="edit" className="tab tab-active">edit</Link> 
 </div>
 <div>
+ 
     <Outlet/> 
     </div>
 </div>
