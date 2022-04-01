@@ -2376,16 +2376,16 @@ html {
   width: 24rem;
 }
 
+.w-80 {
+  width: 20rem;
+}
+
 .w-16 {
   width: 4rem;
 }
 
 .w-52 {
   width: 13rem;
-}
-
-.w-80 {
-  width: 20rem;
 }
 
 .w-\[90vw\] {
