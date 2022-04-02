@@ -10,19 +10,36 @@ function NavBar({}: Props) {
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
-       <svg width={35} height={36} viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width={35} height={36} fill="none" />
-  <circle cx={18} cy={19} r="13.5" stroke="white" strokeLinejoin="round" />
-  <path d="M11 16L18.2414 25L26 16" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-</svg>
-
+              <svg
+                width={35}
+                height={36}
+                viewBox="0 0 35 36"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width={35} height={36} fill="none" />
+                <circle
+                  cx={18}
+                  cy={19}
+                  r="13.5"
+                  stroke="white"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M11 16L18.2414 25L26 16"
+                  stroke="white"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </label>
             <ul
               tabIndex={0}
               className="menu menu-compact text-primary dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to="/dashboard/$user/lv8r/0">LV8R:RIDE</Link> 
+                <Link to="/dashboard/$user/lv8r/0">LV8R:RIDE</Link>
               </li>
               <li tabIndex={0}>
                 <a className="justify-between">
@@ -42,7 +59,7 @@ function NavBar({}: Props) {
                     <Link to="">Make</Link>
                   </li>
                   <li>
-                  <Link to="">Make</Link>
+                    <Link to="">Delete</Link>
                   </li>
                 </ul>
               </li>
@@ -51,7 +68,9 @@ function NavBar({}: Props) {
               </li>
             </ul>
           </div>
-          <Link to="/"><div className="btn btn-ghost normal-case text-2xl">LV8R</div></Link>
+          <Link to="/">
+            <div className="btn btn-ghost normal-case text-2xl">LV8R</div>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
@@ -73,20 +92,20 @@ function NavBar({}: Props) {
               </a>
               <ul className="p-2 z-30 glass bg-base-100 hover:bg-base-00 ">
                 <li>
-                  <a>Submenu 1</a>
+                  <a>Make</a>
                 </li>
                 <li>
-                  <a>Submenu 2</a>
+                  <a>Edit</a>
                 </li>
               </ul>
             </li>
             <li>
-              <a>Item 3</a>
+              <a></a>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
-      {/*     <a className="btn">User Avatar</a> */}
+          {/*     <a className="btn">User Avatar</a> */}
         </div>
       </div>
     </div>
