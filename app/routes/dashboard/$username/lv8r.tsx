@@ -9,13 +9,10 @@ type Props = {}
 export let loader: LoaderFunction = async ({request, params}) => {
   let username = params.username
   let queue = await pitchLoader(username)
-
-
   return {queue, username}
-
 }
 function $lv8r({}: Props) {
-  const [position, setPosition] = useState<number>(0)
+
   
   let data = useLoaderData()
   let pitchQueue = data.queue 
@@ -25,7 +22,6 @@ function $lv8r({}: Props) {
   return (
 
     <div>
-hi
 <Outlet context={pitchQueue} />
      </div>
   )}

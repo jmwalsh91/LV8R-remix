@@ -8,15 +8,9 @@ import {
   redirect,
 } from "remix";
 import { commitSession } from "~/services/session.server";
-import BuildPitch from "~/components/Forms/BuildPitch";
-import BuildPitch2 from "~/components/Forms/BuildPitch2";
-import BuildPitch3 from "~/components/Forms/BuildPitch3";
-import CreatePitch from "~/components/Forms/CreatePitch";
+
 import ScrollWrapper from "~/components/layoutAndWrappers/ScrollWrapper";
-import EndCard from "~/components/pitch/EndCard";
-import HookCard from "~/components/pitch/HookCard";
-import NeedCard from "~/components/pitch/NeedCard";
-import PitchCard from "~/components/pitch/PitchCard";
+
 import { getSession } from "~/services/session.server";
 import { createPitch, hasPitch } from "~/utils/crud";
 import { authenticator } from "~/services/auth.server";
@@ -27,13 +21,11 @@ import { uploadHandler } from "../../../utils/uploadHandler"
 
 export let action: ActionFunction = async ({ request }) => {
   /* //get user object from sessions instead of params, wherever this occurs. */
-  console.log("action in make")
-console.log(request)
+
   let form = await request.formData();
   console.log(form)
   let updatedUser = await createPitch({ form });
-  console.log("place oacsdf");
-  console.log(updatedUser.data[0]);
+
 
   let session = await getSession(request.headers.get("Cookie"));
   session.set("auth:token", updatedUser.data[0].username);

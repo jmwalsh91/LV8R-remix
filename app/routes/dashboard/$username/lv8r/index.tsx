@@ -25,7 +25,7 @@ function Index({}: Props) {
   return (
 
     <div>
-no more match
+You shouldn't be here!
      </div>
   )}
 

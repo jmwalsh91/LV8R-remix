@@ -15,9 +15,7 @@ export let loader: LoaderFunction = async ({ request, params }) => {
   let session = await getSession(request.headers.get("Cookie"))
  let auth = await session.has("Cookie")
   let userdata = await session.get("auth:token")
-  console.log(auth)
-  console.log(userdata)
-  console.log("is user data")
+//fix
   let pitch = await hasPitch(params.username)
   return {pitch}
 };
@@ -59,7 +57,7 @@ function Index({}: Props) {
 
 <div className="w-[90vw] h-[80vh] glass">
 <div className="tabs tabs-boxed w-64 ">
-  <Link to="lv8r" className="tab" >LV8R:RIDE</Link> 
+  <Link to="lv8r/0" className="tab" >LV8R:RIDE</Link> 
   <Link to="make" className="tab tab-active">MAKE</Link> 
   <a className="tab">Tab 3</a>
   <Link to="edit" className="tab tab-active">edit</Link> 

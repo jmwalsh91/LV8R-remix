@@ -3,40 +3,88 @@ import { dbClient } from "./supabaseClient.js";
 export const pitchLoader = async (username: string | undefined) => {
 let currentUser = username
 
-let {data: pitches, oops} = await dbClient
+let {data: excludeArray, error} = await dbClient
+.from("Users")
+.select('encounteredPitches')
+.match({username: currentUser})
+
+let exclude = excludeArray[0].encounteredPitches
+
+if (exclude.length === 1) {
+    let {data: pitches, err} = await dbClient
 .from("Pitches")
 .select()
-
-
-
 return pitches
+} else {
+let {data: pitches, err} = await dbClient
+.from("Pitches")
+.select()
+.not('id','in',`(${exclude})`)
+
+
+return pitches 
+}
+
+ 
+
+
+
 }
 
 export const castVote = async (form) => { 
  let username = await form.get("username")
- let pitchId = await form.get("pitchId")
+ let pitch = await form.get("pitchId")
  let vote = await form.get("vote")
 
-    let {data: encounteredPitch, error} = await dbClient
+
+    let {data: voteTypeAmount, error} = await dbClient
     .from("Pitches")
-    .select("likes, dislikes")
-    .match({pitchId: pitchId})
+    .select(/* `${vote}` */)
+    .match({id: pitch})
+  
 
-    console.log(encounteredPitch)
-    rememberEncounter(encounteredPitch, username)
+    if (vote === "dislikes") {
+        let newTotal = voteTypeAmount[0].dislikes + 1
+
+    let {data: updatedDislikes, err} = await dbClient
+    .from("Pitches")
+    .update({ dislikes : newTotal})
+    .match({id: pitch})
+
+    } else if (vote === "likes") {
+        let newTotal = voteTypeAmount[0].likes + 1
+
+        let {data: updatedLikes, err} = await dbClient
+        .from("Pitches")
+        .update({ likes : newTotal})
+        .match({id: pitch})
+    }
 
 
+    rememberEncounter(pitch, username)
 
+
+return 
 }
 
 export const rememberEncounter = async (encounteredPitch, username) => {
 
+
     let {data: currentUser, error} = await dbClient
     .from("Users")
-    .update({encounteredPitches: encounteredPitch})
+    .select('encounteredPitches')
     .match({username: username})
 
-    console.log(currentUser)
+let encounteredArray = currentUser[0].encounteredPitches
+
+encounteredArray.push(encounteredPitch)
+
+    let {data: updatedEncounters, err} = await dbClient
+    .from("Users")
+    .update({ encounteredPitches: encounteredArray})
+    .match({username: username})
+    console.log(updatedEncounters)
+    console.log("is updated encounters")
 
 return currentUser
 }
