@@ -1,7 +1,10 @@
 import { AnimatePresence } from 'framer-motion'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ScrollWrapper from '../layoutAndWrappers/ScrollWrapper'
-
+import { castVote } from '../../utils/pitchLoader'
+import { useActionData, useFetcher } from 'remix'
+import LikeButton from './LikeButton'
+import DislikeButton from './DislikeButton'
 
 interface currentPitch{
     id: any,
@@ -16,17 +19,35 @@ interface currentPitch{
 }
 
 type Props = {
-    currentPitch: object,
+    currentPitch: currentPitch,
     username: string
 }
 
 function PitchScroll({currentPitch, username}: Props) {
-    useEffect(()=> {
-        console.log(currentPitch)
-        console.log("woooo")
-    },[currentPitch])
-    let pitch = JSON.stringify(currentPitch)
+    let [currentVote, setCurrentVote] = useState<string>("")
+  let pitch: object = currentPitch
+  let currentUsername = username
+  let voteFetcher = useFetcher();
+const data = useActionData()
 
+/* 
+useEffect(() => {
+    console.log(currentVote)
+    let id = currentPitch.id  
+    voteFetcher.submit({currentVote, id, username}, {method: "post"})
+ console.log("hiya there booya")
+  }, [currentVote]);
+
+    let handleVote = async (vote: string) => {
+        console.log("yeuaSJHEfjksdjhfkjsgdjfg")
+
+        return setCurrentVote(vote)
+   
+       
+    
+
+    }
+ */
   return (
 <div>
 
@@ -36,7 +57,7 @@ function PitchScroll({currentPitch, username}: Props) {
 <div className="text-4xl text-base-100 underline mb-2 "> AppRunner </div>
 
 
-<div className="text-xl text-base-100  mb-10"> {pitch}</div>
+<div className="text-xl text-base-100  mb-10"> </div>
 
 <img src="https://i.kym-cdn.com/entries/icons/facebook/000/025/388/1580752469774.jpg" alt="lofi"/>
 
@@ -98,20 +119,20 @@ function PitchScroll({currentPitch, username}: Props) {
 
       </ScrollWrapper>
 
+{/* <voteFetcher.Form
+action={`/dashboard/${username}/lv8r/pitchSubmit`}
+method="post"
+
+
+> */}
 
 
 <div className="flex justify-around pt-2 mb-[30vh]">
-  <button className="btn btn-accent shadow-md shadow-base-100 ">
-    <svg width={35} height={36} viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width={35} height={36} fill="none" />
-      <circle cx={18} cy={19} r="13.5" stroke="black" strokeLinejoin="round" />
-      <path d="M11 16L18.2414 25L26 16" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  </button>
+<DislikeButton username={currentUsername} pitchId={currentPitch.id}/>
 </div>
 
 
-<button className="btn btn-info shadow-md shadow-base-100 ">
+<button className="btn btn-info shadow-md shadow-base-100 " >
 <svg width="27" height="21" viewBox="0 0 27 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M26 4H1V20H26V4Z" stroke="black" strokeLinejoin="round"/>
 <path d="M3 16H15" stroke="black" strokeLinecap="round">
@@ -124,13 +145,8 @@ function PitchScroll({currentPitch, username}: Props) {
 
 </button>
 
-<button className="btn btn-primary shadow-md shadow-base-100 "><svg width="35" height="36" viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="35" height="36" fill="none"/>
-<circle cx="17.5" cy="17.5" r="15" transform="rotate(178.732 17.5 17.5)" stroke="black" stroke-linejoin="round"/>
-<path d="M25.0756 20.8331L17.132 11.0066L9.07954 21.1873" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-</button>
-
+<LikeButton  username={currentUsername} pitchId={currentPitch.id}/>
+{/* </voteFetcher.Form> */}
 </div>
   )
 }

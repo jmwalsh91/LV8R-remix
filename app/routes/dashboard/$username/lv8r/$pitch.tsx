@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import React, { useEffect } from 'react'
-import { LoaderFunction, useLoaderData, useOutletContext } from 'remix'
+import { ActionFunction, LoaderFunction, useLoaderData, useOutletContext } from 'remix'
 import PitchScroll from '~/components/pitch/pitchScroll'
 
 type Props = {}
@@ -12,16 +12,23 @@ export let loader: LoaderFunction = async ({request, params}) => {
     return {username, queuePosition}
 }
 
+export let action: ActionFunction = async ({request}) => {
+    let form = await request.formData()
+    console.log(form)
+/* 
+    let vote = (await request.formData()).get("currentVote")
+    let  username = (await request.formData()).get("username")
+    let pitchId = (await request.formData()).get("pitchId")
+    console.log(vote, username, pitchId) */
+    return "yer"
+}
 function $pitch({}: Props) {
     let queue: any = useOutletContext()
     let data = useLoaderData()
     let username = data.username 
     let queuePosition = data.queuePosition 
     let pitch = queue[queuePosition]
-useEffect(()=>{
-    console.log(pitch)
-    console.log("THAT BE THA PITCH")
-})
+
 
   return (
     <motion.div>

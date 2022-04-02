@@ -12,12 +12,15 @@ let {data: pitches, oops} = await dbClient
 return pitches
 }
 
-export const vote = async (otherPitch: any, vote: string, username: string ) => { 
-    let likesDislikes = vote
+export const castVote = async (form) => { 
+ let username = await form.get("username")
+ let pitchId = await form.get("pitchId")
+ let vote = await form.get("vote")
+
     let {data: encounteredPitch, error} = await dbClient
     .from("Pitches")
     .select("likes, dislikes")
-    .match({pitchId: otherPitch})
+    .match({pitchId: pitchId})
 
     console.log(encounteredPitch)
     rememberEncounter(encounteredPitch, username)
@@ -26,14 +29,14 @@ export const vote = async (otherPitch: any, vote: string, username: string ) => 
 
 }
 
-export const rememberEncounter = async (encounteredPitch, currentUsername) => {
+export const rememberEncounter = async (encounteredPitch, username) => {
 
     let {data: currentUser, error} = await dbClient
     .from("Users")
     .update({encounteredPitches: encounteredPitch})
-    .match({username: currentUsername})
+    .match({username: username})
 
     console.log(currentUser)
 
-
+return currentUser
 }

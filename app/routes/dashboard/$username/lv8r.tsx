@@ -3,13 +3,13 @@ import * as down from 'public/assets/down.svg'
 import ScrollWrapper from '~/components/layoutAndWrappers/ScrollWrapper'
 import { LoaderFunction, Outlet, useLoaderData } from 'remix'
 import { motion, AnimatePresence } from 'framer-motion'
-import {pitchLoader, vote, rememberEncounter} from "../../../utils/pitchLoader"
+import {pitchLoader, rememberEncounter} from "../../../utils/pitchLoader"
 
 type Props = {}
 export let loader: LoaderFunction = async ({request, params}) => {
   let username = params.username
   let queue = await pitchLoader(username)
-  console.log(queue)
+
 
   return {queue, username}
 
@@ -25,7 +25,7 @@ function $lv8r({}: Props) {
   return (
 
     <div>
-
+hi
 <Outlet context={pitchQueue} />
      </div>
   )}
