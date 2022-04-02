@@ -10,10 +10,8 @@ export let loader = async ({request, params}) => {
  
   let userdata = session.data["auth:token"]
   console.log(userdata)
-
-
     const username = params.username
-    console.log(username + "woousername")
+
 /* let userdata = await dbClient.from("Users")
 .select(
   `id, username, email, pitch, received_cards, sent_cards)`

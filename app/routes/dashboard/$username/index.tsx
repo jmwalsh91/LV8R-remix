@@ -48,20 +48,19 @@ function Index({}: Props) {
 
 
 
-<div className="glass">
+{/* <div className="glass">
 <UserInfo username="hiiii" userImage="hola"/>
 </div> 
-
+ */}
 </div>
 
 
-<div className="w-[90vw] h-[80vh] glass">
-<div className="tabs tabs-boxed w-64 ">
-  <Link to="lv8r/0" className="tab" >LV8R:RIDE</Link> 
-  <Link to="make" className="tab tab-active">MAKE</Link> 
-  <a className="tab">Tab 3</a>
-  <Link to="edit" className="tab tab-active">edit</Link> 
-</div>
+<div className="w-[90vw] h-[80vh] glass flex flex-col items-center justify-center">
+<div className="text-4xl text-base-100 btn btn-primary m-5 "> <Link to="lv8r/0" >LV8R:RIDE</Link> </div>
+ 
+<div className="text-4xl text-base-100 btn btn-primary m-5">  <Link to="make" >PITCH:MAKE</Link> </div>
+<div className="text-4xl text-base-100 btn btn-primary m-5 ">  <Link to="edit" >PITCH:EDIT</Link> </div>
+
 <div>
  
     <Outlet/> 
