@@ -29,7 +29,7 @@ import { comparePass } from "~/utils/crud";
  * });
  */
 export let authenticator = new Authenticator<User | Error | null>(sessionStorage, {
-  sessionKey: "this is the session key",
+  sessionKey: "auth:token",
   sessionErrorKey: "Something has gone horribly wrong"
 });
 

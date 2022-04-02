@@ -20,7 +20,7 @@ export const registerSubmit = async ({ form }) => {
   let password2 = await form.get("password2");
 
   if (password1 !== password2) {
-    console.log(password1, password2)
+    console.log(password1, password2);
     throw AuthorizationError;
   } else {
     let isTaken = await dbClient
@@ -55,20 +55,20 @@ export const avatarSubmit = async ({ avatar }) => {
 
 export const createPitch = async ({ form }) => {
   let username = await form.get("username");
-  let one = await form.get("1");
-  let two = await form.get("2");
-  let three = await form.get("3");
-  let four = await form.get("4");
-  let five = await form.get("5");
-  let six = await form.get("6");
+  let title = await form.get("Title");
+  let hookText = await form.get("HookText");
+  let needText = await form.get("NeedText");
+  let pitchText = await form.get("PitchText");
+  let pitchText2 = await form.get("PitchText2");
+  let cta = await form.get("CTA");
 
   let { data: pitch, error } = await dbClient.from("Pitches").insert({
-    FieldOne: one,
-    FieldTwo: two,
-    FieldThree: three,
-    FieldFour: four,
-    FieldFive: five,
-    FieldSix: six,
+    Title: title,
+    HookText: hookText,
+    NeedText: needText,
+    PitchText: pitchText,
+    PitchText2: pitchText2,
+    CTA: cta,
   });
   if (error) {
     throw isErrorResponse("Something went wrong");
@@ -78,13 +78,67 @@ export const createPitch = async ({ form }) => {
     .from("Users")
     .select("id")
     .ilike("username", `${username}`);
-    if (error) {
-      throw isErrorResponse("Something went wrong");
-    }
+  if (error) {
+    throw isErrorResponse("Something went wrong");
+  }
   let updatedUser = await dbClient
     .from("Users")
     .update({ pitch: pitch[0].id })
     .match({ id: pitchOwner[0].id });
 
   return updatedUser;
+};
+
+export const updatePitch = async ({ form }) => {
+  console.log(form)
+  let pitchId = await form.get("pitchId");
+  let title = await form.get("Title");
+  let hookText = await form.get("HookText");
+  let needText = await form.get("NeedText");
+  let pitchText = await form.get("PitchText");
+  let pitchText2 = await form.get("PitchText2");
+  let cta = await form.get("CTA");
+  console.log(pitchId)
+
+  let { data: pitch, error } = await dbClient
+    .from("Pitches")
+    .update({
+      id: pitchId,
+      Title: title,
+      HookText: hookText,
+      NeedText: needText,
+      PitchText: pitchText,
+      PitchText2: pitchText2,
+      CTA: cta
+    })
+    .match({id: pitchId})
+    console.log(pitch)
+    console.log("is pitch")
+  if (error) {
+    console.log(error)
+    console.log(pitch)
+    throw isErrorResponse(error);
+  }
+  console.log(pitch)
+
+  let {data: updatedUser, err} = await dbClient
+    .from("Users")
+    .select()
+    .match({ pitch: pitchId });
+
+console.log(updatedUser[0])
+  return updatedUser[0];
+};
+
+export const hasPitch = async (username: string | undefined) => {
+  let { data: pitch, error } = await dbClient
+    .from("Users")
+    .select(
+      "pitch (Title, HookText, NeedText, PitchText, PitchText2, CTA, likes, dislikes, id) "
+    )
+    .match({ username: `${username}` });
+  if (pitch) {
+   return pitch = pitch[0].pitch
+  } else return null 
+
 };
