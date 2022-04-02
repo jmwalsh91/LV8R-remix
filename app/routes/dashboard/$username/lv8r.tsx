@@ -9,6 +9,7 @@ type Props = {}
 export let loader: LoaderFunction = async ({request, params}) => {
   let username = params.username
   let queue = await pitchLoader(username)
+  console.log(queue)
   return {queue, username}
 }
 function $lv8r({}: Props) {
@@ -20,10 +21,11 @@ function $lv8r({}: Props) {
 
 
   return (
-
-    <div>
+<AnimatePresence exitBeforeEnter>
+    <motion.div>
 <Outlet context={pitchQueue} />
-     </div>
+     </motion.div>
+     </AnimatePresence>
   )}
 
 export default $lv8r

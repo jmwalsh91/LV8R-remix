@@ -2314,6 +2314,10 @@ html {
   margin-bottom: 5vh;
 }
 
+.mb-\[10vh\] {
+  margin-bottom: 10vh;
+}
+
 .mb-\[30vh\] {
   margin-bottom: 30vh;
 }
@@ -2677,8 +2681,10 @@ html {
 }
 
 @media (min-width: 768px) {
-  .md\:h-\[40rem\] {
-    height: 40rem;
+  .md\:h-fit {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
   }
 
   .md\:h-\[20vh\] {
