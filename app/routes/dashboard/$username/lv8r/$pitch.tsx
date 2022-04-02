@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect } from "react";
 import {
   ActionFunction,
@@ -30,9 +30,9 @@ function $pitch({}: Props) {
   let pitch = queue[queuePosition];
 
   return (
-    <motion.div>
+    <AnimatePresence>
       <PitchScroll currentPitch={pitch} username={username}></PitchScroll>
-    </motion.div>
+      </AnimatePresence>
   );
 }
 
