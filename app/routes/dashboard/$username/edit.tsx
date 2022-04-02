@@ -8,29 +8,18 @@ import {
   redirect,
 } from "remix";
 import { commitSession } from "~/services/session.server";
-
 import ScrollWrapper from "~/components/layoutAndWrappers/ScrollWrapper";
-
 import { getSession } from "~/services/session.server";
-import { createPitch, hasPitch } from "~/utils/crud";
+import { createPitch, hasPitch, updatePitch } from "~/utils/crud";
 import { authenticator } from "~/services/auth.server";
-import UploadHookImg from "~/components/Forms/UploadHookImg";
-import UploadPitchImg from "~/components/Forms/UploadPitchImg";
-import { unstable_parseMultipartFormData } from "remix";
-import { uploadHandler } from "../../../utils/uploadHandler"
 
 export let action: ActionFunction = async ({ request }) => {
   /* //get user object from sessions instead of params, wherever this occurs. */
-
-  let form = await request.formData();
-  console.log(form)
-  let updatedUser = await createPitch({ form });
-
-
-  let session = await getSession(request.headers.get("Cookie"));
-  session.set("auth:token", updatedUser.data[0].username);
-
-  return redirect(`/dashboard/${updatedUser.data[0].username}`, {
+  let form = await request.formData()
+  let updatedUser = await updatePitch({ form })
+  let session = await getSession(request.headers.get("Cookie"))
+  session.set("auth:token", updatedUser.username);
+  return redirect(`/dashboard/${updatedUser.username}`, {
     headers: { "Set-Cookie": await commitSession(session) },
   });
 };
@@ -42,32 +31,27 @@ export let loader: LoaderFunction = async ({ request, params }) => {
   console.log(pitch)
 
   let session = await getSession(request.headers.get("Cookie"))
-/*   let username = session.data["auth:token"]
-  console.log(username)
-  console.log("is username") */
 
 
-
-  /*   let username = session.data["auth:token"].username) */
 
   return {pitch, username} 
 };
 
 type Props = {};
 
-function $make({}: Props) {
+function Edit({}: Props) {
 
 
   const data = useLoaderData();
   let username = data.username
-  let pitch = JSON.stringify(data.pitch) 
+  let pitch = data.pitch 
 
   return (
-    <div className="justify-center content-center items-center">
+    <div>
 
 
       <Form method="post">
-        <input type="hidden" name="username" value={`${username}`} />
+        <input type="hidden" name="pitchId" value={data.pitch.id} />
  
         <ScrollWrapper>
           <div className="glass p-2 mb-[30vh] mt-[20vh]">
@@ -75,7 +59,7 @@ function $make({}: Props) {
             name="title"
             className="form-control min-w-full"
             placeholder="Name of your product or project"
-            defaultValue={""}
+            defaultValue={pitch.title}
           ></input>
 
           <div className="form-control ">
@@ -87,11 +71,10 @@ function $make({}: Props) {
               name="HookText"
               className="textarea textarea-accent w-80 h-[30vh]  sm:h-[30rem] md:h-[20vh] lg:w-[40rem] text-md lg:text-2xl "
               placeholder="Catch our interest!"
-              defaultValue={""}
+              defaultValue={pitch.HookText}
             />
           </div>
           <p> image upload here</p>
-   {/*        <UploadHookImg/> */}
           </div>
         </ScrollWrapper>
         <ScrollWrapper>
@@ -104,18 +87,12 @@ function $make({}: Props) {
               name="NeedText"
               className="textarea textarea-accent w-80 h-[30vh]  sm:h-[30rem] md:h-[20vh] lg:w-[40rem] text-md lg:text-2xl "
               placeholder="What need exists for your product, or project?"
-              defaultValue={""}
+              defaultValue={pitch.NeedText}
             />
      
           </div>
 
-      
-          </div>
-
-          <div>
-           <div className="text-2xl w-80 lg:[40rem]">Upload an image that the user will see before you make the final part of your pitch</div>
- {/*           <UploadPitchImg/> */}
- 
+          <p> image upload here</p>
           </div>
         </ScrollWrapper>
 
@@ -129,7 +106,7 @@ function $make({}: Props) {
               name="PitchText"
               className="textarea textarea-accent w-80 h-[30vh]  sm:h-[30rem] md:h-[20vh] lg:w-[40rem] text-md lg:text-2xl "
               placeholder="Make your pitch!"
-              defaultValue={""}
+              defaultValue={pitch.PitchText}
             />
   
           </div>
@@ -141,7 +118,7 @@ function $make({}: Props) {
               name="PitchText2"
               className="textarea textarea-accent w-80 h-[30vh]  sm:h-[30rem] md:h-[20vh] lg:w-[40rem] text-md lg:text-2xl "
               placeholder="Keep making your pitch!"
-              defaultValue={""}
+              defaultValue={pitch.PitchText2}
             />
       
           </div>
@@ -154,7 +131,7 @@ function $make({}: Props) {
               name="CTA"
               className="textarea textarea-accent w-80 h-[30vh]  sm:h-[30rem] md:h-[20vh] lg:w-[40rem] text-md lg:text-2xl "
               placeholder="Call to action. "
-              defaultValue={""}
+              defaultValue={pitch.CTA}
             />
        
           </div>
@@ -167,4 +144,4 @@ function $make({}: Props) {
   );
 }
 
-export default $make;
+export default Edit;

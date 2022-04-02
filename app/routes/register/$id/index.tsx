@@ -9,14 +9,15 @@ export let action: ActionFunction = async ({ request}) => {
     failureRedirect: "/",
   });
   if (user) {
-
-      console.log(user)
-      let session = await getSession()
-      return redirect(`/dashboard/${user.username}`, { 
-      headers: { "Set-Cookie": await commitSession(session) },
-    });
+    let session = await getSession(request.headers.get("Cookie"))
+    session.set("auth:token", user)
+    let username = session.data["auth:token"].username
+    return redirect(`/dashboard/${username}`, { 
+    headers: { "Set-Cookie": await commitSession(session) },
+  });
+    };
   }
-};
+;
 
 
 

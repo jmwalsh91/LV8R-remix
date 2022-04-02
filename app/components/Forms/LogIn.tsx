@@ -1,29 +1,30 @@
 import React from "react";
-import { useNavigate } from "remix";
-import { Form, ActionFunction, LoaderFunction, redirect } from "remix";
+import { Link, useNavigate } from "remix";
+import { Form, ActionFunction, LoaderFunction, redirect, useActionData } from "remix";
 import { authenticator } from "~/services/auth.server";
 type Props = {
   setReg: Function;
 };
 
 
-
+/* 
 export let loader: LoaderFunction = async ({ request }) => {
   console.log(request)
   return await authenticator.isAuthenticated(request, {
     successRedirect: "/dashboard"
   })
-}
+} */
 interface formData {
   value: string
 }
 const LogIn:React.FC<Props> = ({ setReg }: Props) => {
   let navigate = useNavigate()
-  
+  const actionData = useActionData()
+/*   
   function handleRegisterClick() {
       console.log("clicky")
     navigate("/register/account")
-  }
+  } */
 /*   function handleLoginClick() {
     console.log("I click")
     navigate("/dashboard")
@@ -66,15 +67,17 @@ const LogIn:React.FC<Props> = ({ setReg }: Props) => {
 </div> 
           <div className="card-actions justify-around py-5">
       
-      <button className="btn btn-primary ">LogIn</button>
+      <button type="submit" className="btn btn-primary ">LogIn</button>
     </div>
         </Form>
-        <button
+        <Link to="/register/account"><button
 className="btn btn-ghost"
-onClick={() => handleRegisterClick()}
 >
+  
 Register
 </button>
+</Link>
+<div>{actionData?.error ? actionData?.error?.message : null}</div>
       </div>
   
     </div>

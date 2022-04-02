@@ -8,26 +8,36 @@ import { redirect } from "remix";
 import { authenticator } from "~/services/auth.server";
 import StackNotif from "~/components/dashboard/StackNotif";
 import UserInfo from "~/components/dashboard/UserInfo";
+import { hasPitch } from "~/utils/crud";
 
 
-export let loader: LoaderFunction = async ({ params }) => {
-/*   let session = await getSession()
-  let id = await session.has
-  console.log(id) */
-  return params.username;
+export let loader: LoaderFunction = async ({ request, params }) => {
+  let session = await getSession(request.headers.get("Cookie"))
+ let auth = await session.has("Cookie")
+  let userdata = await session.get("auth:token")
+//fix
+  let pitch = await hasPitch(params.username)
+  return {pitch}
 };
-export const action: ActionFunction = async ({
+
+
+
+/*   export const action: ActionFunction = async ({
   request,
 }) => {
-  console.log("whoa there")
-  
-  return await authenticator.logout(request, {redirectTo: "/logreg"})
-};
+  let session = await getSession(request.headers.get("Cookie"))
+  console.log("I AM NAVIGATING")
+ 
+  let userdata = session.data["auth:token"]
+  console.log(userdata)
 
+  return await authenticator.logout(request, {redirectTo: "/logreg"})
+}; */
 type Props = any
 
 function Index({}: Props) {
-  let username: any = useLoaderData();
+  let data = useLoaderData();
+/*   let pitchAction = data.pitch */
   return (
 
     <div className="w-screen h-full flex flex-col items-center justify-center    ">
@@ -38,20 +48,21 @@ function Index({}: Props) {
 
 
 
-<div className="glass">
+{/* <div className="glass">
 <UserInfo username="hiiii" userImage="hola"/>
 </div> 
-
+ */}
 </div>
 
 
-<div className="w-[90vw] h-[80vh] glass">
-<div className="tabs tabs-boxed w-64 ">
-  <Link to="lv8r" className="tab">LV8R:RIDE</Link> 
-  <Link to="make" className="tab tab-active">MAKE</Link> 
-  <a className="tab">Tab 3</a>
-</div>
+<div className="w-[90vw] h-[80vh] glass flex flex-col items-center justify-center">
+<div className="text-4xl text-base-100 btn btn-primary m-5 "> <Link to="lv8r/0" >LV8R:RIDE</Link> </div>
+ 
+<div className="text-4xl text-base-100 btn btn-primary m-5">  <Link to="make" >PITCH:MAKE</Link> </div>
+<div className="text-4xl text-base-100 btn btn-primary m-5 ">  <Link to="edit" >PITCH:EDIT</Link> </div>
+
 <div>
+ 
     <Outlet/> 
     </div>
 </div>

@@ -28,8 +28,9 @@ import { comparePass } from "~/utils/crud";
  *   sessionKey: "token",
  * });
  */
-export let authenticator = new Authenticator<User>(sessionStorage, {
-  sessionKey: "this is the session key",
+export let authenticator = new Authenticator<User | Error | null>(sessionStorage, {
+  sessionKey: "auth:token",
+  sessionErrorKey: "Something has gone horribly wrong"
 });
 
 authenticator.use(
@@ -49,6 +50,8 @@ authenticator.use(
       user = {
         username: res[0].user.username,
         token: `${res[0].user.username}`,
+        user_id: res[0].user.id,
+        pitch: res[0].user.pitch
       };
       return user;
     } else {
@@ -90,6 +93,8 @@ authenticator.use(
       user = {
         username: newUser.data[0].username,
         token: `${newUser.data[0].username}`,
+        user_id: newUser.data[0].id,
+        pitch: null 
       };
     } else user = AuthorizationError;
 
