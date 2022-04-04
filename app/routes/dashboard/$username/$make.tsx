@@ -95,6 +95,7 @@ function $make({}: Props) {
           </div>
         </ScrollWrapper>
         <ScrollWrapper>
+          <div>
         <div className="glass p-2 mb-[5vh]">
           <div className="form-control min-w-full">
           <label className="label">Need, or demand.
@@ -116,6 +117,7 @@ function $make({}: Props) {
            <div className="text-2xl w-80 lg:[40rem]">Upload an image that the user will see before you make the final part of your pitch</div>
  {/*           <UploadPitchImg/> */}
  
+          </div>
           </div>
         </ScrollWrapper>
 

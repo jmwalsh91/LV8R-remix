@@ -2167,11 +2167,6 @@ html {
   margin-bottom: 2.5rem;
 }
 
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
 .mx-3 {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
@@ -2179,6 +2174,14 @@ html {
 
 .mt-3 {
   margin-top: 0.75rem;
+}
+
+.mb-\[0vh\] {
+  margin-bottom: 0vh;
+}
+
+.mt-\[5vh\] {
+  margin-top: 5vh;
 }
 
 .mb-\[30vh\] {
@@ -2197,28 +2200,16 @@ html {
   margin-bottom: 1.25rem;
 }
 
-.mt-\[20vh\] {
-  margin-top: 20vh;
-}
-
 .mb-\[5vh\] {
   margin-bottom: 5vh;
 }
 
-.mb-\[0vh\] {
-  margin-bottom: 0vh;
-}
-
-.mt-\[5vh\] {
-  margin-top: 5vh;
-}
-
-.mt-4 {
-  margin-top: 1rem;
-}
-
 .mt-2 {
   margin-top: 0.5rem;
+}
+
+.mt-\[20vh\] {
+  margin-top: 20vh;
 }
 
 .block {
@@ -2361,10 +2352,6 @@ html {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
-}
-
-.place-self-end {
-  place-self: end;
 }
 
 .rounded-full {
@@ -2515,10 +2502,6 @@ html {
 
 .mix-blend-normal {
   mix-blend-mode: normal;
-}
-
-.mix-blend-darken {
-  mix-blend-mode: darken;
 }
 
 .shadow-md {
