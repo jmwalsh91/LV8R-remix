@@ -22,7 +22,7 @@ export let action: ActionFunction = async ({ request }) => {
     //can flash "success"
   return ""
 };
-function $pitch({}: Props) {
+function Pitch({}: Props) {
   let queue: any = useOutletContext();
   let data = useLoaderData();
   let username = data.username;
@@ -36,4 +36,4 @@ function $pitch({}: Props) {
   );
 }
 
-export default $pitch;
+export default Pitch;

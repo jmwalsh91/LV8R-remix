@@ -706,11 +706,6 @@ html {
   }
 }
 
-.btn-group {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .btn-group > input[type="radio"].btn {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -2476,14 +2471,14 @@ html {
   text-transform: none;
 }
 
-.text-neutral-content {
-  --tw-text-opacity: 1;
-  color: hsl(var(--nc) / var(--tw-text-opacity));
-}
-
 .text-primary {
   --tw-text-opacity: 1;
   color: hsl(var(--p) / var(--tw-text-opacity));
+}
+
+.text-neutral-content {
+  --tw-text-opacity: 1;
+  color: hsl(var(--nc) / var(--tw-text-opacity));
 }
 
 .text-primary-content {
@@ -2499,6 +2494,14 @@ html {
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
+}
+
+.mix-blend-multiply {
+  mix-blend-mode: multiply;
+}
+
+.mix-blend-darken {
+  mix-blend-mode: darken;
 }
 
 .shadow-md {
@@ -2563,12 +2566,6 @@ html {
 
   .md\:h-\[20vh\] {
     height: 20vh;
-  }
-
-  .md\:w-fit {
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
   }
 
   .md\:w-\[40rem\] {

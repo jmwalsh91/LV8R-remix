@@ -7,7 +7,7 @@ import { Form } from "remix";
 
 type Props = {};
 
-function Register({}: Props) {
+const Register:React.FC<Props> = (Props) => {
   return (
     <div className="card w-96 bg-neutral ">
       <div className="card-body flex-col justify-stretch content-around space-y-3 ">
