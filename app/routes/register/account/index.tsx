@@ -12,12 +12,12 @@ export let action: ActionFunction = async ({request}) => {
     if (accountId !== "error") return redirect(`/register/${accountId}`)
     else console.log("error")
 }
-    
-export default function RegisterAccount ({}: any) {
+
+export default function RegisterAccount () {
     return (
-        <>
+     
         <Register/>
-        </>
+       
     )
 
 }

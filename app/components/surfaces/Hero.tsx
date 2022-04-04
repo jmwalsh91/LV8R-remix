@@ -1,6 +1,5 @@
 import React from 'react'
 import lv8rImg from "../../../public/assets/LV8R2.png"
-import BuildPitch from '../Forms/BuildPitch'
 import LogIn from '../Forms/LogIn'
 import Register from '../Forms/Register'
 import {Link} from "remix"
