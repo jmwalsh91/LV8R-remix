@@ -30,9 +30,9 @@ function Pitch({}: Props) {
   let pitch = queue[queuePosition];
 
   return (
-    <AnimatePresence>
+
       <PitchScroll currentPitch={pitch} username={username}></PitchScroll>
-      </AnimatePresence>
+
   );
 }
 

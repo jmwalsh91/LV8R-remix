@@ -2171,8 +2171,8 @@ html {
   margin-top: 0.75rem;
 }
 
-.mb-\[80vh\] {
-  margin-bottom: 80vh;
+.mb-\[30vh\] {
+  margin-bottom: 30vh;
 }
 
 .mb-2 {
@@ -2181,18 +2181,6 @@ html {
 
 .mb-10 {
   margin-bottom: 2.5rem;
-}
-
-.mb-\[5vh\] {
-  margin-bottom: 5vh;
-}
-
-.mb-\[10vh\] {
-  margin-bottom: 10vh;
-}
-
-.mb-\[30vh\] {
-  margin-bottom: 30vh;
 }
 
 .mb-5 {
@@ -2421,10 +2409,6 @@ html {
   padding-top: 0.5rem;
 }
 
-.pb-\[80vh\] {
-  padding-bottom: 80vh;
-}
-
 .pb-5 {
   padding-bottom: 1.25rem;
 }
@@ -2441,11 +2425,6 @@ html {
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }
 
 .text-4xl {
@@ -2494,10 +2473,6 @@ html {
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
-}
-
-.mix-blend-multiply {
-  mix-blend-mode: multiply;
 }
 
 .mix-blend-darken {

@@ -36,7 +36,7 @@ function PitchScroll({ currentPitch, username }: Props) {
 
   return (
     <div className="flex flex-col justify-center">
-      <AnimatePresence exitBeforeEnter>
+
         <ScrollWrapper key="1">
           <HookCard
             title={pitch.Title}
@@ -68,7 +68,7 @@ function PitchScroll({ currentPitch, username }: Props) {
           <LikeButton username={currentUsername} pitchId={currentPitch.id} />
           {/* </voteFetcher.Form> */}
         </div>
-      </AnimatePresence>
+
     </div>
   );
 }

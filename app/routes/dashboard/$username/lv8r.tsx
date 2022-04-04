@@ -12,17 +12,16 @@ export let loader: LoaderFunction = async ({ request, params }) => {
   console.log(queue);
   return { queue, username };
 };
+
 function $lv8r({}: Props) {
   let data = useLoaderData();
   let pitchQueue = data.queue;
   let username: any = data.username;
 
   return (
-    <AnimatePresence exitBeforeEnter>
-      <motion.div>
+
         <Outlet context={pitchQueue} />
-      </motion.div>
-    </AnimatePresence>
+
   );
 }
 

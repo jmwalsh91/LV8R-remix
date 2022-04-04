@@ -8,7 +8,7 @@ type Props = {
 function ScrollWrapper({ children }: Props) {
   const pitchVariants = {
     offscreen: {
-      opacity: 0.5,
+      opacity: 1,
     },
     onscreen: {
       opacity: 1,
@@ -21,9 +21,9 @@ function ScrollWrapper({ children }: Props) {
 
   return (
     <motion.div
-      initial="offscreen"
-      whileInView="onscreen"
-      viewport={{ once: true, amount: 0.5 }}
+      initial="onscreen"
+      whileInView="offscreen"
+      viewport={{ once: false, amount: 0.5 }}
     >
       <motion.div variants={pitchVariants}>{children}</motion.div>
     </motion.div>
