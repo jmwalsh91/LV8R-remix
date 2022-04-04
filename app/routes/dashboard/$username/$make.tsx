@@ -70,7 +70,7 @@ function $make({}: Props) {
         <input type="hidden" name="username" value={`${username}`} />
  
         <ScrollWrapper>
-          <div className="glass p-2 mb-[30vh] mt-[20vh]">
+          <div className="glass p-2 mb-[5vh] mt-[5vh]">
           <input
             name="title"
             className="form-control min-w-full"
@@ -95,7 +95,7 @@ function $make({}: Props) {
           </div>
         </ScrollWrapper>
         <ScrollWrapper>
-        <div className="glass p-2 mb-[30vh]">
+        <div className="glass p-2 mb-[5vh]">
           <div className="form-control min-w-full">
           <label className="label">Need, or demand.
     
@@ -120,7 +120,7 @@ function $make({}: Props) {
         </ScrollWrapper>
 
         <ScrollWrapper>
-        <div className="glass p-2 mb-[30vh]">
+        <div className="glass p-2 mb-[5vh]">
           <div className="form-control pb-5">
           <label className="label">Pitch
     
@@ -160,8 +160,9 @@ function $make({}: Props) {
           </div>
         </ScrollWrapper>
         
-
-        <button className="btn btn-primary">Submit</button>
+<div className="flex flex-col items-end mt-2 mb-10">
+        <button className="btn btn-primary ">Submit</button>
+        </div>
       </Form>
     </div>
   );

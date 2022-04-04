@@ -2167,6 +2167,16 @@ html {
   margin-bottom: 2.5rem;
 }
 
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.mx-3 {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+}
+
 .mt-3 {
   margin-top: 0.75rem;
 }
@@ -2189,6 +2199,26 @@ html {
 
 .mt-\[20vh\] {
   margin-top: 20vh;
+}
+
+.mb-\[5vh\] {
+  margin-bottom: 5vh;
+}
+
+.mb-\[0vh\] {
+  margin-bottom: 0vh;
+}
+
+.mt-\[5vh\] {
+  margin-top: 5vh;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
 .block {
@@ -2297,6 +2327,10 @@ html {
   align-content: space-around;
 }
 
+.items-end {
+  align-items: flex-end;
+}
+
 .items-center {
   align-items: center;
 }
@@ -2327,6 +2361,10 @@ html {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+
+.place-self-end {
+  place-self: end;
 }
 
 .rounded-full {
@@ -2473,6 +2511,10 @@ html {
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
+}
+
+.mix-blend-normal {
+  mix-blend-mode: normal;
 }
 
 .mix-blend-darken {
