@@ -2,13 +2,14 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 type Props = {
-  children: any;
+  children: JSX.Element;
 };
 
 function ScrollWrapper({ children }: Props) {
   const pitchVariants = {
     offscreen: {
-      opacity: 0.5,
+      //revert to .5 to restore animation
+      opacity: 1,
     },
     onscreen: {
       opacity: 1,
@@ -23,9 +24,9 @@ function ScrollWrapper({ children }: Props) {
     <motion.div
       initial="offscreen"
       whileInView="onscreen"
-      viewport={{ once: true, amount: 0.5 }}
+      viewport={{ once: false, amount: 1 }}
     >
-      <motion.div variants={pitchVariants}>{children}</motion.div>
+      <motion.div variants={pitchVariants} whileHover={{scale: 1.2}}>{children}</motion.div>
     </motion.div>
   );
 }

@@ -706,11 +706,6 @@ html {
   }
 }
 
-.btn-group {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .btn-group > input[type="radio"].btn {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -2172,12 +2167,25 @@ html {
   margin-bottom: 2.5rem;
 }
 
+.mx-3 {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+}
+
 .mt-3 {
   margin-top: 0.75rem;
 }
 
-.mb-\[80vh\] {
-  margin-bottom: 80vh;
+.mb-\[0vh\] {
+  margin-bottom: 0vh;
+}
+
+.mt-\[5vh\] {
+  margin-top: 5vh;
+}
+
+.mb-\[30vh\] {
+  margin-bottom: 30vh;
 }
 
 .mb-2 {
@@ -2188,20 +2196,16 @@ html {
   margin-bottom: 2.5rem;
 }
 
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
 .mb-\[5vh\] {
   margin-bottom: 5vh;
 }
 
-.mb-\[10vh\] {
-  margin-bottom: 10vh;
-}
-
-.mb-\[30vh\] {
-  margin-bottom: 30vh;
-}
-
-.mb-5 {
-  margin-bottom: 1.25rem;
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
 .mt-\[20vh\] {
@@ -2312,6 +2316,10 @@ html {
 
 .content-around {
   align-content: space-around;
+}
+
+.items-end {
+  align-items: flex-end;
 }
 
 .items-center {
@@ -2426,10 +2434,6 @@ html {
   padding-top: 0.5rem;
 }
 
-.pb-\[80vh\] {
-  padding-bottom: 80vh;
-}
-
 .pb-5 {
   padding-bottom: 1.25rem;
 }
@@ -2446,11 +2450,6 @@ html {
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }
 
 .text-4xl {
@@ -2476,14 +2475,14 @@ html {
   text-transform: none;
 }
 
-.text-neutral-content {
-  --tw-text-opacity: 1;
-  color: hsl(var(--nc) / var(--tw-text-opacity));
-}
-
 .text-primary {
   --tw-text-opacity: 1;
   color: hsl(var(--p) / var(--tw-text-opacity));
+}
+
+.text-neutral-content {
+  --tw-text-opacity: 1;
+  color: hsl(var(--nc) / var(--tw-text-opacity));
 }
 
 .text-primary-content {
@@ -2499,6 +2498,10 @@ html {
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
+}
+
+.mix-blend-normal {
+  mix-blend-mode: normal;
 }
 
 .shadow-md {
@@ -2563,12 +2566,6 @@ html {
 
   .md\:h-\[20vh\] {
     height: 20vh;
-  }
-
-  .md\:w-fit {
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
   }
 
   .md\:w-\[40rem\] {
