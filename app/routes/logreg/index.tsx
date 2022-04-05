@@ -5,7 +5,7 @@ import LogIn from '~/components/Forms/LogIn'
 import Foundation from '~/components/layoutAndWrappers/Foundation'
 import { ActionFunction } from 'remix'
 import { authenticator } from '~/services/auth.server.js'
-
+import { motion } from 'framer-motion'
 /* 
 export let loader: LoaderFunction = async ({ request }) => {
   return await authenticator.isAuthenticated(request, { 
@@ -26,9 +26,6 @@ export let action: ActionFunction = async ({request, context}) => {
     //do we want access token or just token, for now? 
     session.set("auth:token", user)
     let username = session.data["auth:token"].username
-    console.log(username)
-    console.log("is username")
-    
     return redirect(`/dashboard/${username}`, { 
     headers: { "Set-Cookie": await commitSession(session) },
   });

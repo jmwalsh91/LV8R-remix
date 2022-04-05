@@ -9,7 +9,8 @@ import { authenticator } from "~/services/auth.server";
 import StackNotif from "~/components/dashboard/StackNotif";
 import UserInfo from "~/components/dashboard/UserInfo";
 import { hasPitch } from "~/utils/crud";
-
+import { motion } from "framer-motion";
+import { Scripts } from "remix";
 
 export let loader: LoaderFunction = async ({ request, params }) => {
   let session = await getSession(request.headers.get("Cookie"))
@@ -37,7 +38,7 @@ type Props = any
 
 function Index({}: Props) {
   let data = useLoaderData();
-/*   let pitchAction = data.pitch */
+
   return (
 
     <div className="w-screen h-full flex flex-col items-center justify-center    ">
@@ -48,16 +49,11 @@ function Index({}: Props) {
 
 
 
-{/* <div className="glass">
-<UserInfo username="hiiii" userImage="hola"/>
-</div> 
- */}
 </div>
 
 
 <div className="w-[90vw] h-[80vh] glass flex flex-col items-center justify-center">
 <div className="text-4xl text-base-100 btn btn-primary m-5 "> <Link to="lv8r/0" >LV8R:RIDE</Link> </div>
- 
 <div className="text-4xl text-base-100 btn btn-primary m-5">  <Link to="make" >PITCH:MAKE</Link> </div>
 <div className="text-4xl text-base-100 btn btn-primary m-5 ">  <Link to="edit" >PITCH:EDIT</Link> </div>
 <div className="text-4xl text-base-100 btn btn-primary m-5 ">  <Link to="createcard" >CARD:MAKE</Link> </div>

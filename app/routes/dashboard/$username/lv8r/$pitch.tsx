@@ -14,6 +14,8 @@ type Props = {};
 export let loader: LoaderFunction = async ({ request, params }) => {
   let username = params.username;
   let queuePosition = params.pitch;
+  console.log(username)
+  console.log(queuePosition)
   return { username, queuePosition };
 };
 
@@ -28,7 +30,7 @@ export let action: ActionFunction = async ({ request }) => {
       json({status: 400})
   }
     //can flash "success"
-  return json("yeah")
+  return json("")
 }} 
 
 function Pitch({}: Props) {

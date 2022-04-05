@@ -1,5 +1,6 @@
 import {dbClient} from './supabaseClient'
 
+
 {/* 
 this goes in component route 
 
@@ -60,7 +61,7 @@ goes in action
 export const uploadHandler = async ({ name, stream, filename }) => {
     console.log(name, stream, filename);
 
-    if (!name ) {
+    if (name ) {
       stream.resume();
       console.log("stream")
       console.log(stream)
@@ -86,7 +87,7 @@ export const uploadHandler = async ({ name, stream, filename }) => {
  JSON.stringify({ data });
   }
 
-  
+
 
 /* 
   // get file info back after image upload

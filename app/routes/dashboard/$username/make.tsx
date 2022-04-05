@@ -38,8 +38,6 @@ export let action: ActionFunction = async ({ request }) => {
 export let loader: LoaderFunction = async ({ request, params }) => {
  let username = params.username
   let pitch = await hasPitch(username)
-  console.log("pitch is..")
-  console.log(pitch)
 
   let session = await getSession(request.headers.get("Cookie"))
 /*   let username = session.data["auth:token"]
@@ -55,7 +53,7 @@ export let loader: LoaderFunction = async ({ request, params }) => {
 
 type Props = {};
 
-function $make({}: Props) {
+function Make({}: Props) {
 
 
   const data = useLoaderData();
@@ -170,4 +168,4 @@ function $make({}: Props) {
   );
 }
 
-export default $make;
+export default Make;
