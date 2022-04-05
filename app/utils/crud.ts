@@ -142,3 +142,16 @@ export const hasPitch = async (username: string | undefined) => {
   } else return null 
 
 };
+/* 
+export const sendCard = async  */
+export const deleteUserPitch = async (username: FormDataEntryValue | undefined | null) => {
+  let { data: pitch, error } = await dbClient
+    .from("Users")
+    .delete(
+      "pitch"
+    )
+    .match({ username: `${username}` });
+    console.log(pitch)
+return pitch 
+
+};

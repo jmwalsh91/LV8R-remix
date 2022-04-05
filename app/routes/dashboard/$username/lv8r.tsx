@@ -9,7 +9,7 @@ type Props = {};
 export let loader: LoaderFunction = async ({ request, params }) => {
   let username = params.username;
   let queue = await pitchLoader(username);
-  console.log(queue);
+  console.log(queue)
   return { queue, username };
 };
 

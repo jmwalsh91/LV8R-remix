@@ -1,20 +1,40 @@
 
+import { useEffect, useState } from 'react'
 import { useFetcher } from 'remix'
 
 type Props = {
     username: any,
     pitchId: any, 
+    open: boolean
 }
 
-function SendCard({username, pitchId}: Props) {
+function SendCard({username, pitchId, open}: Props) {
     const sendCardSubmit = useFetcher()
+    const [toggle, setToggle] = useState(0)
+    const [visible, setVisible] = useState(true)
+    
+
     
 
   return (
     <sendCardSubmit.Form method="post">
-        
-
-        <button className="btn btn-info shadow-md shadow-base-100 " >
+      <input type="hidden" value={username} name="username" />
+      <input type="hidden" value={pitchId} name="pitchId" />
+    {visible === true? <div className="form-control">
+    <label className="label">What's your message?
+    
+    </label>
+    <textarea
+      name="cardText"
+      className="textarea textarea-accent w-80 h-[30vh]  sm:h-[30rem] md:h-[20vh] lg:w-[40rem] text-md lg:text-2xl "
+      placeholder="This is currently not working. Also, there does not appear to be client side javascript after the initial render of the view. At least useState, useEffect, onClick, alert, preventDefault, any client-side console.logs..."
+      defaultValue={""}
+    />
+     <button type="submit" className="btn btn-info shadow-md shadow-base-100 ">Send Card</button>
+    </div>
+    : null} 
+    
+        <button type="submit" className="btn btn-info shadow-md shadow-base-100 " >
 <svg width="27" height="21" viewBox="0 0 27 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M26 4H1V20H26V4Z" stroke="black" strokeLinejoin="round"/>
 <path d="M3 16H15" stroke="black" strokeLinecap="round">
