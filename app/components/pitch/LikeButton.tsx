@@ -6,11 +6,15 @@ type Props = {
   pitchId: any;
 };
 
+
+
 function LikeButton({ username, pitchId }: Props) {
   const likeSubmit = useFetcher();
 
+
+
   return (
-    <likeSubmit.Form method="post">
+    <likeSubmit.Form reloadDocument={false} method="post">
       <input type="hidden" value={username} name="username" />
       <input type="hidden" value={pitchId} name="pitchId" />
       <input type="hidden" value="likes" name="vote" />

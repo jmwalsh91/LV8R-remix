@@ -5,6 +5,7 @@ import {
   LoaderFunction,
   useLoaderData,
   useOutletContext,
+  json
 } from "remix";
 import PitchScroll from "~/components/pitch/pitchScroll";
 import { castVote } from "~/utils/pitchLoader";
@@ -17,11 +18,19 @@ export let loader: LoaderFunction = async ({ request, params }) => {
 };
 
 export let action: ActionFunction = async ({ request }) => {
-  let form = await request.formData();
-  let result = await castVote(form);
+  const form = await request.formData()
+  const isVote = form.has("vote")
+  if (isVote) {
+  try { 
+      await castVote(form)
+      return json({status: 200})
+  } catch (error) {
+      json({status: 400})
+  }
     //can flash "success"
-  return ""
-};
+  return json("yeah")
+}} 
+
 function Pitch({}: Props) {
   let queue: any = useOutletContext();
   let data = useLoaderData();

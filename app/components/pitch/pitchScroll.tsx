@@ -10,6 +10,7 @@ import HookCard from "./HookCard";
 import NeedCard from "./NeedCard";
 import PitchCard from "./PitchCard";
 import CtaCard from "./CtaCard";
+import CreateCard from "~/routes/dashboard/$username/$createcard";
 
 interface currentPitch {
   id: any;
@@ -63,11 +64,14 @@ function PitchScroll({ currentPitch, username }: Props) {
         <div className="flex justify-around pt-2 mb-[30vh]">
           <DislikeButton username={currentUsername} pitchId={currentPitch.id} />
 
-          <SendCard username={currentUsername} pitchId={currentPitch.id} />
+           <SendCard username={currentUsername} pitchId={currentPitch.id} />
+
+          
 
           <LikeButton username={currentUsername} pitchId={currentPitch.id} />
           {/* </voteFetcher.Form> */}
         </div>
+
         </AnimatePresence>
     </div>
   );

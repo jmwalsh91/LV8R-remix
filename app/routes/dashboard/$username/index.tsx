@@ -60,6 +60,7 @@ function Index({}: Props) {
  
 <div className="text-4xl text-base-100 btn btn-primary m-5">  <Link to="make" >PITCH:MAKE</Link> </div>
 <div className="text-4xl text-base-100 btn btn-primary m-5 ">  <Link to="edit" >PITCH:EDIT</Link> </div>
+<div className="text-4xl text-base-100 btn btn-primary m-5 ">  <Link to="createcard" >CARD:MAKE</Link> </div>
 
 <div>
  

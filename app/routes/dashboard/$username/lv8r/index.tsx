@@ -8,9 +8,10 @@ import {pitchLoader, rememberEncounter} from "../../../../utils/pitchLoader"
 type Props = {}
 export let loader: LoaderFunction = async ({request, params}) => {
   let username = params.username
+  console.log("whoa")
   let queue = await pitchLoader(username)
   console.log(queue)
-
+console.log("whoa")
   return {queue, username}
 
 }
